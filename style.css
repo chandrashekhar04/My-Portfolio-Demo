@@ -111,13 +111,10 @@ footer {
 }
 
 #home {
-  position: relative;
+position: relative;
   min-height: 100vh;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  padding-left: 60px;
   color: white;
+  z-index: 1;
 }
 
 .bg-image-wrapper {
