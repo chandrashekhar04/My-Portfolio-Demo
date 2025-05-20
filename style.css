@@ -1,0 +1,188 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  font-family: 'Poppins', sans-serif;
+scroll-behavior: smooth;
+}
+
+aside {
+  width: 250px;
+  background-color: #1c1c1c;
+  color: white;
+  height: 100vh;
+  padding: 20px;
+  position: fixed;
+}
+
+.profile img {
+  width: 100px;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto;
+}
+
+.profile h2 {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.social-icons {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.social-icons a {
+  color: white;
+  margin: 0 11px;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.social-icons a:hover {
+  color: #66fcf1; /* ⬅️ Light color on hover */
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+nav ul li {
+  margin: 15px 0;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  display: block;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+nav ul li a:hover {
+  background-color: #444;
+}
+
+nav ul li a.active {
+  background-color: #007bff;
+  color: white;
+}
+
+main {
+  margin-left: 250px;
+  width: calc(100% - 250px);
+  padding: 0;
+  background: white;
+  height: auto;
+  overflow: visible;
+  position: relative;
+}
+
+.section {
+  display: block;            /* ✅ CHANGE: Sab sections visible raho */
+  padding: 100px 40px;       /* ✅ Adjust spacing for scroll snapping */
+  min-height: 100vh;
+  border-bottom: 1px solid #ddd;
+}
+
+.section.active {
+  display: block;
+}
+
+footer {
+  text-align: center;
+  font-size: 0.8rem;
+  margin-top: 10rem;
+}
+
+#home {
+  position: relative;
+  height: 100vh;
+  background: url('your-bg-image.jpg') no-repeat center center/cover;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: white;
+  text-align: left;
+padding-left: 50px;
+}
+
+.home-content {
+  z-index: 2;
+}
+
+.name {
+  font-size: 3rem;
+  font-weight: 700;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+  margin: 0;
+text-align: left;
+}
+
+.taglines {
+
+  margin-top: 5px;
+margin-left: 5px;
+  font-size: 1.5rem;
+  color: white;
+  height: 40px;
+  white-space: nowrap;
+  overflow: hidden;
+  
+  padding-right: 5px;
+}
+
+#typing-text {
+  font-weight: 700;
+  border-bottom: 3px solid #007BFF; /* Blue underline */
+  padding-bottom: 4px; /* Thoda space underline ke liye */
+  display: inline-block; /* Taaki border text ke size tak hi ho */
+ line-height: 1.2;
+}
+
+
+.cursor {
+  display: inline-block;
+  background-color: white;
+  width: 2px;
+  margin-left: 2px;
+  animation: blink 1s steps(2, start) infinite;
+  vertical-align: middle;
+  height: 1em;
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  50.01%, 100% {
+    opacity: 0;
+  }
+}
+
+
+.tagline {
+  position: absolute;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.tagline.active {
+  opacity: 1;
+}
+
+/* Optional: Dark overlay so text is readable */
+#home::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
