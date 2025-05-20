@@ -121,9 +121,9 @@ footer {
 }
 
 .bg-image-wrapper {
-  position: absolute;
+ position: fixed;         /* Changed from absolute to fixed */
   inset: 0;
-  z-index: 0;
+  z-index: -1;
 }
 
 .bg-image-wrapper img.bg-image {
@@ -197,5 +197,12 @@ margin-left: 5px;
 
 .tagline.active {
   opacity: 1;
+}
+
+
+#about {
+  background-color: white;
+  position: relative;
+  z-index: 1;
 }
 
