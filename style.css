@@ -105,7 +105,7 @@ footer {
 #home {
   position: relative;
   min-height: 100vh;
-  background-image: url('images/bg.jpg');  /* ← Apna image path yahan do */
+  background-image: url('https://github.com/chandrashekhar04/chandrashekhar04.github.io/blob/main/My.jpg');  /* ← Apna image path yahan do */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
