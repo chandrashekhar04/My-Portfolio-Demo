@@ -195,6 +195,11 @@
       });
     }, { threshold: 0.6 });
     sections.forEach((section) => observer.observe(section));
+    // Force scroll to top on page reload to land on the Home section
+window.onbeforeunload = function () {
+  window.scrollTo(0, 0);
+};
+
   </script>
 </body>
 </html>
