@@ -4,7 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Chandrashekhar Saini</title>
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome for icons -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
   <style>
     aside::-webkit-scrollbar {
@@ -29,17 +31,22 @@
     }
   </style>
 </head>
-<body class="font-poppins bg-white flex min-h-screen">
+<body class="font-poppins bg-white min-h-screen flex relative">
+
+  <!-- Overlay for mobile -->
+  <div id="overlay" class="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm z-10 hidden md:hidden transition-opacity duration-500 ease-in-out"></div>
 
   <!-- Sidebar -->
-  <aside
-    id="sidebar"
+  <aside id="sidebar"
     class="fixed top-0 left-0 h-full w-64 bg-gray-900 text-white flex flex-col p-6 overflow-y-auto z-20
-      transform -translate-x-full transition-all duration-500 ease-in-out md:translate-x-0 md:static md:transform-none">
+           transform -translate-x-full md:translate-x-0 md:relative md:transform-none transition-all duration-500 ease-in-out"
+  >
     <div class="profile mb-8 text-center">
-      <img src="Profile.jpg" alt="Profile Photo" class="mx-auto w-28 h-28 rounded-full object-cover border-2 border-white" />
+      <img src="Profile.jpg" alt="Profile Photo"
+           class="mx-auto w-28 h-28 rounded-full object-cover border-2 border-white" />
       <h2 class="mt-4 text-xl font-semibold">Chandrashekhar Saini</h2>
     </div>
+
     <div class="social-icons flex justify-center space-x-6 mb-8 text-xl">
       <a href="#" class="hover:text-green-400"><i class="fab fa-behance"></i></a>
       <a href="#" class="hover:text-blue-600"><i class="fab fa-facebook-f"></i></a>
@@ -47,6 +54,7 @@
       <a href="#" class="hover:text-blue-400"><i class="fab fa-skype"></i></a>
       <a href="#" class="hover:text-blue-700"><i class="fab fa-linkedin-in"></i></a>
     </div>
+
     <nav>
       <ul class="space-y-4 text-lg">
         <li><a href="#home" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200 active:bg-blue-600"><i class="fas fa-home"></i><span>Home</span></a></li>
@@ -57,25 +65,29 @@
         <li><a href="#contact" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200"><i class="fas fa-envelope"></i><span>Contact</span></a></li>
       </ul>
     </nav>
-    <footer class="mt-auto text-center text-sm text-gray-400 py-6">&copy; Copyright <strong>Chandrashekhar</strong></footer>
+
+    <footer class="mt-auto text-center text-sm text-gray-400 py-6">
+      &copy; Copyright <strong>Chandrashekhar</strong>
+    </footer>
   </aside>
 
-  <!-- Overlay -->
-  <div id="overlay" class="fixed inset-0 z-10 bg-black bg-opacity-40 backdrop-blur-sm transition-opacity duration-300 opacity-0 pointer-events-none md:hidden"></div>
-
-  <!-- Toggle Button -->
-  <button id="menu-toggle" aria-label="Toggle menu" class="fixed top-5 left-5 z-30 md:hidden bg-gray-900 text-white p-3 rounded-md focus:outline-none">
+  <!-- Mobile Navbar Toggle Button -->
+  <button id="menu-toggle" aria-label="Toggle menu"
+    class="fixed top-5 left-5 z-30 md:hidden bg-gray-900 text-white p-3 rounded-md focus:outline-none">
     <i class="fas fa-bars text-xl"></i>
   </button>
 
   <!-- Main Content -->
-  <main id="main-content" class="flex-1 ml-0 md:ml-64 p-0 space-y-24 overflow-x-hidden">
+  <main id="main-content" class="flex-1 ml-0 md:ml-64 p-0 space-y-24 overflow-x-hidden relative z-0">
     <section id="home" class="h-screen relative text-white">
       <div class="absolute inset-0 -z-10">
-        <img src="My.jpg" alt="Background" class="w-full h-full object-cover object-[95%] sm:object-[55%] md:object-right" />
+        <img src="My.jpg" alt="Background"
+             class="w-full h-full object-cover object-[95%] sm:object-[55%] md:object-right" />
       </div>
       <div class="relative z-10 flex flex-col justify-start md:justify-center items-center md:items-start text-center md:text-left h-full px-4 sm:px-8 md:px-16 pt-20 sm:pt-24">
-        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">Chandrashekhar Saini</h1>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+          Chandrashekhar Saini
+        </h1>
         <div class="mt-4 flex items-center justify-center md:justify-start gap-2">
           <span class="whitespace-nowrap text-lg sm:text-xl md:text-2xl lg:text-3xl">I'm a</span>
           <div class="relative">
@@ -87,56 +99,65 @@
       </div>
     </section>
 
-    <section id="about" class="min-h-screen bg-white p-8 rounded shadow-lg">
+    <!-- Other Sections -->
+    <section id="about" class="min-h-screen bg-white p-8">
       <h2 class="text-3xl font-semibold mb-4">About Me</h2>
       <p>I'm a passionate Graphic Designer and Video Editor.</p>
     </section>
 
-    <section id="resume" class="min-h-screen bg-white p-8 rounded shadow-lg">
+    <section id="resume" class="min-h-screen bg-white p-8">
       <h2 class="text-3xl font-semibold mb-4">Resume</h2>
       <p>Experience & Education</p>
     </section>
 
-    <section id="portfolio" class="min-h-screen bg-white p-8 rounded shadow-lg">
+    <section id="portfolio" class="min-h-screen bg-white p-8">
       <h2 class="text-3xl font-semibold mb-4">Portfolio</h2>
       <p>Some of my works.</p>
     </section>
 
-    <section id="services" class="min-h-screen bg-white p-8 rounded shadow-lg">
+    <section id="services" class="min-h-screen bg-white p-8">
       <h2 class="text-3xl font-semibold mb-4">Services</h2>
       <p>What I can offer.</p>
     </section>
 
-    <section id="contact" class="min-h-screen bg-white p-8 rounded shadow-lg">
+    <section id="contact" class="min-h-screen bg-white p-8">
       <h2 class="text-3xl font-semibold mb-4">Contact</h2>
       <p>Let's connect.</p>
     </section>
   </main>
 
+  <!-- JavaScript -->
   <script>
     const menuToggle = document.getElementById('menu-toggle');
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('overlay');
+    const navLinks = document.querySelectorAll('nav ul li a');
 
     menuToggle.addEventListener('click', () => {
       sidebar.classList.toggle('-translate-x-full');
-      overlay.classList.toggle('opacity-0');
-      overlay.classList.toggle('pointer-events-none');
+      overlay.classList.toggle('hidden');
     });
 
     overlay.addEventListener('click', () => {
       sidebar.classList.add('-translate-x-full');
-      overlay.classList.add('opacity-0', 'pointer-events-none');
+      overlay.classList.add('hidden');
+    });
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth < 768) {
+          sidebar.classList.add('-translate-x-full');
+          overlay.classList.add('hidden');
+        }
+      });
     });
 
     const sections = document.querySelectorAll('main section');
-    const navLinks = document.querySelectorAll('nav ul li a');
-
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const id = entry.target.getAttribute('id');
-          navLinks.forEach(link => {
+          navLinks.forEach((link) => {
             link.classList.remove('active', 'bg-blue-600');
             if (link.getAttribute('href').substring(1) === id) {
               link.classList.add('active', 'bg-blue-600');
@@ -145,37 +166,12 @@
         }
       });
     }, { threshold: 0.6 });
+    sections.forEach((section) => observer.observe(section));
 
-    sections.forEach(section => observer.observe(section));
-
-    navLinks.forEach(link => {
-      link.addEventListener('click', e => {
-        e.preventDefault();
-        const targetId = link.getAttribute('href').substring(1);
-        const targetSection = document.getElementById(targetId);
-        if (targetSection) {
-          targetSection.scrollIntoView({ behavior: 'smooth' });
-          if (window.innerWidth < 768) {
-            sidebar.classList.add('-translate-x-full');
-            overlay.classList.add('opacity-0', 'pointer-events-none');
-          }
-        }
-      });
-    });
-
-    const words = [
-      'Creative Graphic Designer',
-      'Video Editor',
-      'Tech Enthusiast',
-      'Lifelong Learner',
-    ];
+    const words = ['Creative Graphic Designer', 'Video Editor', 'Tech Enthusiast', 'Lifelong Learner'];
     const typingText = document.getElementById('typing-text');
-    let wordIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    let typingSpeed = 150;
-    let deletingSpeed = 80;
-    let pauseBetween = 2000;
+    let wordIndex = 0, charIndex = 0, isDeleting = false;
+    let typingSpeed = 150, deletingSpeed = 80, pauseBetween = 2000;
 
     function type() {
       const currentWord = words[wordIndex];
