@@ -4,9 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Chandrashekhar Saini</title>
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Font Awesome for icons -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
   <style>
     aside::-webkit-scrollbar {
@@ -32,9 +30,13 @@
   </style>
 </head>
 <body class="font-poppins bg-white flex min-h-screen">
-  <aside id="sidebar"
-  class="fixed top-0 left-0 h-full w-64 bg-gray-900 text-white flex flex-col p-6 overflow-y-auto z-20 transform -translate-x-full transition-all duration-500 ease-in-out md:translate-x-0 md:static md:transform-none">
-    <div id="overlay" class="fixed inset-0 z-10 bg-black bg-opacity-40 backdrop-blur-sm transition-opacity duration-300 opacity-0 pointer-events-none md:hidden></div><div class="profile mb-8 text-center">
+
+  <!-- Sidebar -->
+  <aside
+    id="sidebar"
+    class="fixed top-0 left-0 h-full w-64 bg-gray-900 text-white flex flex-col p-6 overflow-y-auto z-20
+      transform -translate-x-full transition-all duration-500 ease-in-out md:translate-x-0 md:static md:transform-none">
+    <div class="profile mb-8 text-center">
       <img src="Profile.jpg" alt="Profile Photo" class="mx-auto w-28 h-28 rounded-full object-cover border-2 border-white" />
       <h2 class="mt-4 text-xl font-semibold">Chandrashekhar Saini</h2>
     </div>
@@ -47,7 +49,7 @@
     </div>
     <nav>
       <ul class="space-y-4 text-lg">
-        <li><a href="#home" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200" aria-current="page"><i class="fas fa-home"></i><span>Home</span></a></li>
+        <li><a href="#home" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200 active:bg-blue-600"><i class="fas fa-home"></i><span>Home</span></a></li>
         <li><a href="#about" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200"><i class="fas fa-user"></i><span>About</span></a></li>
         <li><a href="#resume" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200"><i class="fas fa-file"></i><span>Resume</span></a></li>
         <li><a href="#portfolio" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200"><i class="fas fa-briefcase"></i><span>Portfolio</span></a></li>
@@ -57,7 +59,16 @@
     </nav>
     <footer class="mt-auto text-center text-sm text-gray-400 py-6">&copy; Copyright <strong>Chandrashekhar</strong></footer>
   </aside>
-  <button id="menu-toggle" aria-label="Toggle menu" class="fixed top-5 left-5 z-30 md:hidden bg-gray-900 text-white p-3 rounded-md focus:outline-none"><i class="fas fa-bars text-xl"></i></button>
+
+  <!-- Overlay -->
+  <div id="overlay" class="fixed inset-0 z-10 bg-black bg-opacity-40 backdrop-blur-sm transition-opacity duration-300 opacity-0 pointer-events-none md:hidden"></div>
+
+  <!-- Toggle Button -->
+  <button id="menu-toggle" aria-label="Toggle menu" class="fixed top-5 left-5 z-30 md:hidden bg-gray-900 text-white p-3 rounded-md focus:outline-none">
+    <i class="fas fa-bars text-xl"></i>
+  </button>
+
+  <!-- Main Content -->
   <main id="main-content" class="flex-1 ml-0 md:ml-64 p-0 space-y-24 overflow-x-hidden">
     <section id="home" class="h-screen relative text-white">
       <div class="absolute inset-0 -z-10">
@@ -69,58 +80,63 @@
           <span class="whitespace-nowrap text-lg sm:text-xl md:text-2xl lg:text-3xl">I'm a</span>
           <div class="relative">
             <span id="typing-text" class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold inline-block"></span>
+            <span class="absolute left-0 bottom-0 w-full h-1 bg-blue-500" id="underline"></span>
           </div>
           <span class="cursor"></span>
         </div>
       </div>
     </section>
-    <section id="about" class="min-h-screen bg-white px-6 py-8 rounded shadow-lg">
+
+    <section id="about" class="min-h-screen bg-white p-8 rounded shadow-lg">
       <h2 class="text-3xl font-semibold mb-4">About Me</h2>
       <p>I'm a passionate Graphic Designer and Video Editor.</p>
     </section>
-    <section id="resume" class="min-h-screen bg-white px-6 py-8 rounded shadow-lg">
+
+    <section id="resume" class="min-h-screen bg-white p-8 rounded shadow-lg">
       <h2 class="text-3xl font-semibold mb-4">Resume</h2>
       <p>Experience & Education</p>
     </section>
-    <section id="portfolio" class="min-h-screen bg-white px-6 py-8 rounded shadow-lg">
+
+    <section id="portfolio" class="min-h-screen bg-white p-8 rounded shadow-lg">
       <h2 class="text-3xl font-semibold mb-4">Portfolio</h2>
       <p>Some of my works.</p>
     </section>
-    <section id="services" class="min-h-screen bg-white px-6 py-8 rounded shadow-lg">
+
+    <section id="services" class="min-h-screen bg-white p-8 rounded shadow-lg">
       <h2 class="text-3xl font-semibold mb-4">Services</h2>
       <p>What I can offer.</p>
     </section>
-    <section id="contact" class="min-h-screen bg-white px-6 py-8 rounded shadow-lg">
+
+    <section id="contact" class="min-h-screen bg-white p-8 rounded shadow-lg">
       <h2 class="text-3xl font-semibold mb-4">Contact</h2>
       <p>Let's connect.</p>
     </section>
   </main>
+
   <script>
     const menuToggle = document.getElementById('menu-toggle');
-const sidebar = document.getElementById('sidebar');
-const overlay = document.getElementById('overlay');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
 
-menuToggle.addEventListener('click', () => {
-  const isOpen = !sidebar.classList.contains('-translate-x-full');
-  sidebar.classList.toggle('-translate-x-full');
+    menuToggle.addEventListener('click', () => {
+      sidebar.classList.toggle('-translate-x-full');
+      overlay.classList.toggle('opacity-0');
+      overlay.classList.toggle('pointer-events-none');
+    });
 
-  // Show or hide overlay
-  overlay.classList.toggle('opacity-0');
-  overlay.classList.toggle('pointer-events-none');
-});
+    overlay.addEventListener('click', () => {
+      sidebar.classList.add('-translate-x-full');
+      overlay.classList.add('opacity-0', 'pointer-events-none');
+    });
 
-// Close sidebar when clicking on the overlay
-overlay.addEventListener('click', () => {
-  sidebar.classList.add('-translate-x-full');
-  overlay.classList.add('opacity-0', 'pointer-events-none');
-});
     const sections = document.querySelectorAll('main section');
     const navLinks = document.querySelectorAll('nav ul li a');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
         if (entry.isIntersecting) {
           const id = entry.target.getAttribute('id');
-          navLinks.forEach((link) => {
+          navLinks.forEach(link => {
             link.classList.remove('active', 'bg-blue-600');
             if (link.getAttribute('href').substring(1) === id) {
               link.classList.add('active', 'bg-blue-600');
@@ -129,9 +145,11 @@ overlay.addEventListener('click', () => {
         }
       });
     }, { threshold: 0.6 });
-    sections.forEach((section) => observer.observe(section));
-    navLinks.forEach((link) => {
-      link.addEventListener('click', (e) => {
+
+    sections.forEach(section => observer.observe(section));
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', e => {
         e.preventDefault();
         const targetId = link.getAttribute('href').substring(1);
         const targetSection = document.getElementById(targetId);
@@ -139,13 +157,26 @@ overlay.addEventListener('click', () => {
           targetSection.scrollIntoView({ behavior: 'smooth' });
           if (window.innerWidth < 768) {
             sidebar.classList.add('-translate-x-full');
+            overlay.classList.add('opacity-0', 'pointer-events-none');
           }
         }
       });
     });
-    const words = ["Creative Graphic Designer", "Video Editor", "Tech Enthusiast", "Lifelong Learner"];
+
+    const words = [
+      'Creative Graphic Designer',
+      'Video Editor',
+      'Tech Enthusiast',
+      'Lifelong Learner',
+    ];
     const typingText = document.getElementById('typing-text');
-    let wordIndex = 0, charIndex = 0, isDeleting = false;
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typingSpeed = 150;
+    let deletingSpeed = 80;
+    let pauseBetween = 2000;
+
     function type() {
       const currentWord = words[wordIndex];
       if (!isDeleting) {
@@ -153,7 +184,7 @@ overlay.addEventListener('click', () => {
         charIndex++;
         if (charIndex === currentWord.length) {
           isDeleting = true;
-          setTimeout(type, 2000);
+          setTimeout(type, pauseBetween);
           return;
         }
       } else {
@@ -164,8 +195,9 @@ overlay.addEventListener('click', () => {
           wordIndex = (wordIndex + 1) % words.length;
         }
       }
-      setTimeout(type, isDeleting ? 80 : 150);
+      setTimeout(type, isDeleting ? deletingSpeed : typingSpeed);
     }
+
     document.addEventListener('DOMContentLoaded', type);
   </script>
 </body>
