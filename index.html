@@ -34,16 +34,16 @@
 </head>
 <body class="min-h-screen font-poppins bg-white">
 
-  <div class="flex flex-col md:flex-row h-full">
+  <div class="flex flex-col md:flex-row min-h-screen">
 
     <!-- Overlay -->
     <div id="overlay" class="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm z-10 hidden transition-opacity duration-300"></div>
 
     <!-- Sidebar -->
-    <aside id="sidebar" class="fixed md:sticky top-0 left-0 md:top-0 md:h-screen w-64 bg-gray-900 text-white p-6 z-20 transform -translate-x-full md:translate-x-0 transition-transform duration-500 ease-in-out overflow-y-auto">
+    <aside id="sidebar" class="fixed md:sticky top-0 left-0 md:top-0 md:min-h-screen w-64 bg-gray-900 text-white p-6 z-20 transform -translate-x-full md:translate-x-0 transition-transform duration-500 ease-in-out overflow-y-auto flex flex-col">
       <div class="profile mb-8 text-center">
         <img src="Profile.jpg" alt="Profile Photo" class="mx-auto w-28 h-28 rounded-full object-cover border-2 border-white" />
-        <h2 class="mt-4 text-m font-semibold">Chandrashekhar Saini</h2>
+        <h2 class="mt-4 text-xl font-semibold">Chandrashekhar Saini</h2>
       </div>
       <div class="social-icons flex justify-center space-x-6 mb-8 text-xl">
         <a href="#" class="hover:text-green-400"><i class="fab fa-behance"></i></a>
@@ -53,21 +53,52 @@
         <a href="#" class="hover:text-blue-700"><i class="fab fa-linkedin-in"></i></a>
       </div>
       <nav>
-        <ul class="space-y-2 text-sm">
-          <li><a href="#home" class="nav-link flex items-center space-x-2 p-1 rounded hover:bg-gray-700 transition-colors duration-200 active:bg-blue-600"><i class="fas fa-home"></i><span>Home</span></a></li>
-          <li><a href="#about" class="nav-link flex items-center space-x-2 p-1 rounded hover:bg-gray-700 transition-colors duration-200"><i class="fas fa-user"></i><span>About</span></a></li>
-          <li><a href="#skills" class="nav-link flex items-center space-x-2 p-1 rounded hover:bg-gray-700 transition-colors duration-200"><i class="fas fa-lightbulb"></i><span>Skills</span></a></li>
-          <li><a href="#portfolio" class="nav-link flex items-center space-x-2 p-1 rounded hover:bg-gray-700 transition-colors duration-200"><i class="fas fa-briefcase"></i><span>Portfolio</span></a></li>
-          <li><a href="#resume" class="nav-link flex items-center space-x-2 p-1 rounded hover:bg-gray-700 transition-colors duration-200"><i class="fas fa-file-alt"></i><span>Resume</span></a></li>
-          <li><a href="#services" class="nav-link flex items-center space-x-2 p-1 rounded hover:bg-gray-700 transition-colors duration-200"><i class="fas fa-tools"></i><span>Services</span></a></li>
-          <li><a href="#achievements" class="nav-link flex items-center space-x-2 p-1 rounded hover:bg-gray-700 transition-colors duration-200"><i class="fas fa-trophy"></i><span>Achievements</span></a></li>
-          <li><a href="#contact" class="nav-link flex items-center space-x-2 p-1 rounded hover:bg-gray-700 transition-colors duration-200"><i class="fas fa-envelope"></i><span>Contact</span></a></li>
+        <ul class="space-y-3 text-sm"> <!-- Smaller font for nav links -->
+          <li>
+            <a href="#home" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200 active:bg-blue-600">
+              <i class="fas fa-home"></i><span>Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="#about" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200">
+              <i class="fas fa-user"></i><span>About</span>
+            </a>
+          </li>
+          <li>
+            <a href="#skills" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200">
+              <i class="fas fa-code"></i><span>Skills</span>
+            </a>
+          </li>
+          <li>
+            <a href="#portfolio" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200">
+              <i class="fas fa-briefcase"></i><span>Portfolio</span>
+            </a>
+          </li>
+          <li>
+            <a href="#resume" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200">
+              <i class="fas fa-file"></i><span>Resume</span>
+            </a>
+          </li>
+          <li>
+            <a href="#services" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200">
+              <i class="fas fa-cogs"></i><span>Services</span>
+            </a>
+          </li>
+          <li>
+            <a href="#achievements" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200">
+              <i class="fas fa-trophy"></i><span>Achievements</span>
+            </a>
+          </li>
+          <li>
+            <a href="#contact" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200">
+              <i class="fas fa-envelope"></i><span>Contact</span>
+            </a>
+          </li>
         </ul>
       </nav>
-      <footer class="mt-auto text-center text-gray-400 py-2 text-xs sm:text-sm md:text-base md:mt-12">
-  &copy; Copyright <strong>Chandrashekhar</strong>
-</footer>
-
+      <footer class="mt-auto text-center text-gray-400 py-2 text-xs sm:text-sm md:text-base md:mt-12 whitespace-nowrap w-full">
+        &copy; Copyright <strong>Chandrashekhar</strong>
+      </footer>
     </aside>
 
     <!-- Mobile Toggle -->
@@ -77,12 +108,12 @@
 
     <!-- Main Content -->
     <main id="main-content" class="flex-1 transition-all duration-500 overflow-x-hidden">
-      <section id="home" class="min-h-screen relative text-white p-8">
+      <section id="home" class="min-h-screen relative text-white">
         <div class="absolute inset-0 -z-10">
           <img src="My.jpg" alt="Background" class="w-full h-full object-cover object-[95%] sm:object-[55%] md:object-right" />
         </div>
         <div class="relative z-10 flex flex-col justify-start md:justify-center items-center md:items-start text-center md:text-left min-h-screen px-4 sm:px-8 md:px-16 pt-20 sm:pt-24">
-          <h1 class="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold leading-tight">Chandrashekhar Saini</h1>
+          <!-- Removed heading as requested -->
           <div class="mt-4 flex items-center justify-center md:justify-start gap-2">
             <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl">I'm a</span>
             <div class="relative">
@@ -95,37 +126,37 @@
       </section>
 
       <section id="about" class="min-h-screen bg-white p-8">
-        <h2 class="text-3xl font-semibold mb-4 underline decoration-blue-500 decoration-4 underline-offset-4">About</h2>
+        <h2 class="text-3xl font-semibold mb-4 underline decoration-blue-500 underline-offset-4">About</h2>
         <p>I'm a passionate Graphic Designer and Video Editor.</p>
       </section>
 
       <section id="skills" class="min-h-screen bg-white p-8">
-        <h2 class="text-3xl font-semibold mb-4 underline decoration-blue-500 decoration-4 underline-offset-4">Skills</h2>
-        <p>My technical skills and expertise.</p>
+        <h2 class="text-3xl font-semibold mb-4 underline decoration-blue-500 underline-offset-4">Skills</h2>
+        <p>Here are my professional skills and technologies I work with.</p>
       </section>
 
       <section id="portfolio" class="min-h-screen bg-white p-8">
-        <h2 class="text-3xl font-semibold mb-4 underline decoration-blue-500 decoration-4 underline-offset-4">Portfolio</h2>
+        <h2 class="text-3xl font-semibold mb-4 underline decoration-blue-500 underline-offset-4">Portfolio</h2>
         <p>Some of my works.</p>
       </section>
 
       <section id="resume" class="min-h-screen bg-white p-8">
-        <h2 class="text-3xl font-semibold mb-4 underline decoration-blue-500 decoration-4 underline-offset-4">Resume</h2>
+        <h2 class="text-3xl font-semibold mb-4 underline decoration-blue-500 underline-offset-4">Resume</h2>
         <p>Experience & Education</p>
       </section>
 
       <section id="services" class="min-h-screen bg-white p-8">
-        <h2 class="text-3xl font-semibold mb-4 underline decoration-blue-500 decoration-4 underline-offset-4">Services</h2>
+        <h2 class="text-3xl font-semibold mb-4 underline decoration-blue-500 underline-offset-4">Services</h2>
         <p>What I can offer.</p>
       </section>
 
       <section id="achievements" class="min-h-screen bg-white p-8">
-        <h2 class="text-3xl font-semibold mb-4 underline decoration-blue-500 decoration-4 underline-offset-4">Achievements</h2>
+        <h2 class="text-3xl font-semibold mb-4 underline decoration-blue-500 underline-offset-4">Achievements</h2>
         <p>My accomplishments and awards.</p>
       </section>
 
       <section id="contact" class="min-h-screen bg-white p-8">
-        <h2 class="text-3xl font-semibold mb-4 underline decoration-blue-500 decoration-4 underline-offset-4">Contact</h2>
+        <h2 class="text-3xl font-semibold mb-4 underline decoration-blue-500 underline-offset-4">Contact</h2>
         <p>Let's connect.</p>
       </section>
     </main>
@@ -174,7 +205,7 @@
       });
     });
 
-    const words = ['Graphic Designer.', 'Video Editor.', 'Digital Creator.', 'Visual Artist.'];
+    const words = ['Creative Graphic Designer', 'Video Editor', 'Tech Enthusiast', 'Lifelong Learner'];
     const typingText = document.getElementById('typing-text');
     let wordIndex = 0, charIndex = 0, isDeleting = false;
     function type() {
@@ -209,7 +240,7 @@
     }, { threshold: 0.6 });
     sections.forEach((section) => observer.observe(section));
 
-    // Force scroll to top on page reload
+    // Scroll to top on reload for all devices
     window.addEventListener('load', function () {
       setTimeout(function () {
         if (performance.navigation.type === 1 || performance.getEntriesByType("navigation")[0].type === "reload") {
