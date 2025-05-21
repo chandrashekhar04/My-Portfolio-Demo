@@ -6,7 +6,22 @@
   <title>Chandrashekhar Saini</title>
 
   <!-- Tailwind CSS -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            poppins: ['Poppins', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 
   <!-- Font Awesome -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
@@ -15,6 +30,9 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet" />
 
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
     aside::-webkit-scrollbar {
       width: 6px;
     }
@@ -35,30 +53,12 @@
       0%, 50% { opacity: 1; }
       50.01%, 100% { opacity: 0; }
     }
-
     body.menu-open {
       overflow: hidden;
     }
-
-    /* Dark mode overrides */
-    body.dark {
-      background-color: #121212;
-      color: #e0e0e0;
-    }
-    body.dark aside {
-      background-color: #1f2937; /* dark gray */
-      color: #e0e0e0;
-    }
-    body.dark a:hover {
-      background-color: #2563eb; /* blue-600 */
-    }
-    body.dark .bg-white {
-      background-color: #1f2937 !important;
-      color: #e0e0e0 !important;
-    }
   </style>
 </head>
-<body class="min-h-screen font-poppins bg-white">
+<body class="min-h-screen font-poppins bg-white text-black dark:bg-gray-900 dark:text-gray-200">
 
   <!-- Dark Mode Toggle Button -->
   <button id="dark-mode-toggle" class="fixed top-5 right-5 z-30 bg-gray-900 text-white p-3 rounded-md hidden md:block" aria-label="Toggle Dark Mode">
@@ -85,12 +85,12 @@
       </div>
       <nav>
         <ul class="space-y-4 text-lg">
-          <li><a href="#home" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200 active:bg-blue-600"><i class="fas fa-home"></i><span>Home</span></a></li>
-          <li><a href="#about" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200"><i class="fas fa-user"></i><span>About</span></a></li>
-          <li><a href="#resume" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200"><i class="fas fa-file"></i><span>Resume</span></a></li>
-          <li><a href="#portfolio" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200"><i class="fas fa-briefcase"></i><span>Portfolio</span></a></li>
-          <li><a href="#services" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200"><i class="fas fa-concierge-bell"></i><span>Services</span></a></li>
-          <li><a href="#contact" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200"><i class="fas fa-envelope"></i><span>Contact</span></a></li>
+          <li><a href="#home" class="flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition duration-200"><i class="fas fa-home"></i><span>Home</span></a></li>
+          <li><a href="#about" class="flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition duration-200"><i class="fas fa-user"></i><span>About</span></a></li>
+          <li><a href="#resume" class="flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition duration-200"><i class="fas fa-file"></i><span>Resume</span></a></li>
+          <li><a href="#portfolio" class="flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition duration-200"><i class="fas fa-briefcase"></i><span>Portfolio</span></a></li>
+          <li><a href="#services" class="flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition duration-200"><i class="fas fa-concierge-bell"></i><span>Services</span></a></li>
+          <li><a href="#contact" class="flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition duration-200"><i class="fas fa-envelope"></i><span>Contact</span></a></li>
         </ul>
       </nav>
       <footer class="mt-auto text-center text-sm text-gray-400 py-6">
@@ -104,86 +104,73 @@
     </button>
 
     <!-- Main Content -->
-    <main id="main-content" class="flex-1 transition-all duration-500 overflow-x-hidden">
+    <main class="flex-1 transition-all duration-500 overflow-x-hidden">
 
       <section id="home" class="min-h-screen relative text-white" data-aos="fade-up">
-        <!-- Gradient overlay -->
-        <div class="absolute inset-0 -z-10 bg-gradient-to-r from-black/70 via-black/40 to-black/70"></div>
+        <!-- Slightly transparent overlay -->
+        <div class="absolute inset-0 -z-10 bg-black/30"></div>
+
         <!-- Background image -->
         <div class="absolute inset-0 -z-20">
-          <img src="My.jpg" alt="Background" class="w-full h-full object-cover object-[95%] sm:object-[55%] md:object-right" loading="lazy" />
+          <img src="My.jpg" alt="Background" class="w-full h-full object-cover object-center md:object-right" loading="lazy" />
         </div>
+
         <div class="relative z-10 flex flex-col justify-start md:justify-center items-center md:items-start text-center md:text-left min-h-screen px-4 sm:px-8 md:px-16 pt-20 sm:pt-24">
           <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">Chandrashekhar Saini</h1>
           <div class="mt-4 flex items-center justify-center md:justify-start gap-2">
             <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl">I'm a</span>
             <div class="relative">
               <span id="typing-text" class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold inline-block"></span>
-              <span class="absolute left-0 bottom-0 w-full h-1 bg-blue-500" id="underline"></span>
             </div>
             <span class="cursor"></span>
           </div>
         </div>
       </section>
 
-      <section id="about" class="min-h-screen bg-white p-8" data-aos="fade-up">
+      <section id="about" class="min-h-screen bg-white dark:bg-gray-900 p-8" data-aos="fade-up">
         <h2 class="text-3xl font-semibold mb-4">About Me</h2>
         <p>I'm a passionate Graphic Designer and Video Editor.</p>
       </section>
 
-      <section id="resume" class="min-h-screen bg-white p-8" data-aos="fade-up" data-aos-delay="100">
+      <section id="resume" class="min-h-screen bg-white dark:bg-gray-900 p-8" data-aos="fade-up" data-aos-delay="100">
         <h2 class="text-3xl font-semibold mb-4">Resume</h2>
         <p>Experience & Education</p>
       </section>
 
-      <section id="portfolio" class="min-h-screen bg-white p-8" data-aos="fade-up" data-aos-delay="200">
+      <section id="portfolio" class="min-h-screen bg-white dark:bg-gray-900 p-8" data-aos="fade-up" data-aos-delay="200">
         <h2 class="text-3xl font-semibold mb-4">Portfolio</h2>
         <p>Some of my works.</p>
       </section>
 
-      <section id="services" class="min-h-screen bg-white p-8" data-aos="fade-up" data-aos-delay="300">
+      <section id="services" class="min-h-screen bg-white dark:bg-gray-900 p-8" data-aos="fade-up" data-aos-delay="300">
         <h2 class="text-3xl font-semibold mb-4">Services</h2>
         <p>What I can offer.</p>
       </section>
 
-      <section id="contact" class="min-h-screen bg-white p-8" data-aos="fade-up" data-aos-delay="400">
+      <section id="contact" class="min-h-screen bg-white dark:bg-gray-900 p-8" data-aos="fade-up" data-aos-delay="400">
         <h2 class="text-3xl font-semibold mb-4">Contact</h2>
         <form id="contact-form" class="max-w-lg mx-auto space-y-4">
           <input type="text" name="name" placeholder="Your Name" required class="w-full p-3 border rounded" />
           <input type="email" name="email" placeholder="Your Email" required class="w-full p-3 border rounded" />
           <textarea name="message" placeholder="Your Message" rows="5" required class="w-full p-3 border rounded"></textarea>
           <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700">Send Message</button>
-          <p id="form-status" class="mt-2 text-sm"></p>
         </form>
       </section>
 
     </main>
-
   </div>
-
-  <!-- Scripts -->
 
   <!-- AOS JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-
-  <!-- EmailJS -->
-  <script src="https://cdn.emailjs.com/sdk/3.2.0/email.min.js"></script>
-
   <script>
-    // Initialize AOS
-    AOS.init({
-      duration: 800,
-      once: true,
-    });
+    AOS.init({ duration: 800, once: true });
 
-    // Typing animation for "I'm a ..." line
+    // Typing Effect
     const roles = ["Graphic Designer", "Video Editor", "Creative Artist", "Freelancer"];
     const typingElement = document.getElementById('typing-text');
     const cursor = document.querySelector('.cursor');
     let roleIndex = 0, charIndex = 0;
-    let typingDelay = 100;
-    let erasingDelay = 50;
-    let newTextDelay = 2000; // Delay between texts
+    let typingDelay = 100, erasingDelay = 50, newTextDelay = 2000;
 
     function type() {
       if (charIndex < roles[roleIndex].length) {
@@ -201,17 +188,16 @@
         charIndex--;
         setTimeout(erase, erasingDelay);
       } else {
-        roleIndex++;
-        if (roleIndex >= roles.length) roleIndex = 0;
+        roleIndex = (roleIndex + 1) % roles.length;
         setTimeout(type, typingDelay + 1100);
       }
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-      if (roles.length) setTimeout(type, newTextDelay + 250);
+      setTimeout(type, newTextDelay + 250);
     });
 
-    // Menu toggle logic for mobile
+    // Mobile menu toggle
     const menuToggle = document.getElementById('menu-toggle');
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('overlay');
@@ -231,48 +217,25 @@
     }
 
     menuToggle.addEventListener('click', () => {
-      if (sidebar.classList.contains('-translate-x-full')) {
-        openMenu();
-      } else {
-        closeMenu();
-      }
+      if (sidebar.classList.contains('-translate-x-full')) openMenu();
+      else closeMenu();
     });
 
     overlay.addEventListener('click', closeMenu);
 
-    // EmailJS contact form setup - replace with your own IDs
-    emailjs.init('YOUR_USER_ID'); // <-- Replace this!
-
-    const contactForm = document.getElementById('contact-form');
-    const formStatus = document.getElementById('form-status');
-
-    contactForm.addEventListener('submit', function(event) {
-      event.preventDefault();
-      formStatus.textContent = 'Sending...';
-
-      emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
-        .then(() => {
-          formStatus.textContent = 'Message sent successfully!';
-          contactForm.reset();
-        }, (error) => {
-          formStatus.textContent = 'Failed to send message. Please try again later.';
-          console.error(error);
-        });
+    // Close sidebar on nav link click (mobile only)
+    document.querySelectorAll('#sidebar a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth < 768) closeMenu();
+      });
     });
 
-    // Dark Mode toggle
+    // Dark mode toggle
     const darkModeToggle = document.getElementById('dark-mode-toggle');
-
     function setDarkMode(enabled) {
-      if (enabled) {
-        document.body.classList.add('dark');
-        localStorage.setItem('darkMode', 'enabled');
-        darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-      } else {
-        document.body.classList.remove('dark');
-        localStorage.setItem('darkMode', 'disabled');
-        darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-      }
+      document.body.classList.toggle('dark', enabled);
+      localStorage.setItem('darkMode', enabled ? 'enabled' : 'disabled');
+      darkModeToggle.innerHTML = enabled ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
     }
 
     darkModeToggle.addEventListener('click', () => {
@@ -280,13 +243,9 @@
       setDarkMode(!enabled);
     });
 
-    window.addEventListener('DOMContentLoaded', () => {
-      if (localStorage.getItem('darkMode') === 'enabled') {
-        setDarkMode(true);
-      }
-    });
-
+    if (localStorage.getItem('darkMode') === 'enabled') {
+      setDarkMode(true);
+    }
   </script>
-
 </body>
 </html>
