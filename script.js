@@ -83,12 +83,9 @@ document.addEventListener("DOMContentLoaded", () => {
   type();
 
   // Hamburger menu toggle
-  const menuToggle = document.querySelector(".menu-toggle");
-  const nav = document.querySelector("nav");
+  const menuToggle = document.getElementById("menu-toggle");
+const nav = document.querySelector("aside nav");
 
-  if (menuToggle && nav) {
-    menuToggle.addEventListener("click", () => {
-      nav.classList.toggle("open");
-    });
-  }
+menuToggle.addEventListener("click", () => {
+  nav.classList.toggle("open");
 });
