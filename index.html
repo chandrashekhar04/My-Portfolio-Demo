@@ -10,10 +10,14 @@
 </head>
 <body>
   <aside>
+    <!-- Hamburger Toggle (Visible on mobile only) -->
+    <button class="menu-toggle"><i class="fas fa-bars"></i></button>
+
     <div class="profile">
       <img src="Profile.jpg" alt="Profile Photo" />
       <h2>Chandrashekhar Saini</h2>
     </div>
+
     <div class="social-icons">
       <a href="#"><i class="fab fa-behance"></i></a>
       <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -21,7 +25,9 @@
       <a href="#"><i class="fab fa-skype"></i></a>
       <a href="#"><i class="fab fa-linkedin-in"></i></a>
     </div>
-    <nav>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
       <ul>
         <li><a href="#home" class="nav-link active"><i class="fas fa-home"></i> Home</a></li>
         <li><a href="#about" class="nav-link"><i class="fas fa-user"></i> About</a></li>
@@ -31,24 +37,29 @@
         <li><a href="#contact" class="nav-link"><i class="fas fa-envelope"></i> Contact</a></li>
       </ul>
     </nav>
+
     <footer>
       <p>&copy; Copyright <strong>Chandrashekhar</strong></p>
     </footer>
   </aside>
 
   <main>
+    <!-- Home Section -->
     <section id="home" class="section active">
-        <div class="bg-image-wrapper">
-    <img src="img.jpg" alt="Background" class="bg-image" />
-  </div>
-  <div class="home-content">
-    <h1 class="name">Chandrashekhar Saini</h1>
-    <div class="taglines">
-  <span class="fixed-text">I'm a&nbsp;</span><span id="typing-text"></span><span class="cursor"></span>
-</div>
-  </div>
-</section>
+      <div class="bg-image-wrapper">
+        <img src="img.jpg" alt="Background" class="bg-image" />
+      </div>
+      <div class="home-content">
+        <h1 class="name">Chandrashekhar Saini</h1>
+        <div class="taglines">
+          <span class="fixed-text">I'm a&nbsp;</span>
+          <span id="typing-text"></span>
+          <span class="cursor"></span>
+        </div>
+      </div>
+    </section>
 
+    <!-- Other Sections -->
     <section id="about" class="section">I'm a passionate Graphic Designer and Video Editor.</section>
     <section id="resume" class="section">Experience & Education</section>
     <section id="portfolio" class="section">Some of my works.</section>
