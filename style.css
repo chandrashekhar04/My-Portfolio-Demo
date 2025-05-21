@@ -1,3 +1,4 @@
+/* Reset & Global */
 * {
   margin: 0;
   padding: 0;
@@ -199,17 +200,72 @@ footer {
   z-index: 1;
 }
 
-/* ------------------------- Responsive Design ------------------------- */
+/* --------------------- Hamburger Menu Toggle --------------------- */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: white;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 20;
+}
 
-/* Tablet and Mobile Adjustments */
-@media (max-width: 1024px) {
-  /* Sidebar collapses and full width */
+/* --------------------- Responsive Design --------------------- */
+
+/* Mobile First */
+aside {
+  width: 100%;
+  height: auto;
+  position: static;
+}
+
+main {
+  margin-left: 0;
+  width: 100%;
+}
+
+.section {
+  padding: 50px 20px;
+}
+
+.profile img {
+  width: 80px;
+  height: 80px;
+}
+
+.name {
+  font-size: 1.8rem;
+}
+
+.taglines {
+  font-size: 1rem;
+}
+
+nav {
+  display: none;
+  background-color: #1c1c1c;
+  width: 100%;
+}
+
+nav.open {
+  display: block;
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1024px) {
   aside {
     width: 200px;
+    height: 100vh;
+    position: fixed;
   }
 
   main {
     margin-left: 200px;
+    width: calc(100% - 200px);
   }
 
   .profile img {
@@ -224,58 +280,52 @@ footer {
   .taglines {
     font-size: 1.2rem;
   }
-}
 
-@media (max-width: 768px) {
-  /* Mobile */
-  aside {
-    width: 100%;
-    position: static;
-    height: auto;
-  }
-
-  main {
-    margin-left: 0;
-    width: 100%;
-  }
-
-  .profile img {
-    width: 80px;
-    height: 80px;
-  }
-
-  .name {
-    font-size: 1.8rem;
-  }
-
-  .taglines {
-    font-size: 1rem;
-  }
-
-  /* Adjust section padding for mobile */
-  .section {
-    padding: 50px 20px;
-  }
-
-  nav ul li {
-    margin: 10px 0;
-  }
-
-  nav ul li a {
-    font-size: 16px;
-    padding: 8px;
-  }
-
-  /* Hamburger Menu for mobile */
   .menu-toggle {
-    display: block;
-  }
-
-  .main-nav {
     display: none;
   }
 
-  .main-nav.open {
+  nav {
     display: block;
+  }
+}
+
+/* Laptop and Desktop */
+@media (min-width: 1025px) {
+  aside {
+    width: 250px;
+  }
+
+  main {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+  }
+
+  .profile img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .name {
+    font-size: 3rem;
+  }
+
+  .taglines {
+    font-size: 1.5rem;
+  }
+
+  .menu-toggle {
+    display: none;
+  }
+
+  nav {
+    display: block;
+  }
+}
+
+/* Fix background image for mobile */
+@media (max-width: 768px) {
+  .bg-image-wrapper {
+    position: absolute;
   }
 }
