@@ -22,7 +22,7 @@ const observer = new IntersectionObserver((entries) => {
 // Observe all sections
 sections.forEach(section => observer.observe(section));
 
-// Optional: Smooth scroll (if CSS doesn't handle it)
+// Smooth scroll on nav link click
 navLinks.forEach(link => {
   link.addEventListener("click", function (e) {
     e.preventDefault();
@@ -31,9 +31,16 @@ navLinks.forEach(link => {
     if (targetSection) {
       targetSection.scrollIntoView({ behavior: "smooth" });
     }
+
+    // Close menu on mobile after clicking
+    const nav = document.querySelector("nav");
+    if (window.innerWidth <= 768 && nav.classList.contains("open")) {
+      nav.classList.remove("open");
+    }
   });
 });
 
+// Typing effect
 const words = [
   "Creative Graphic Designer",
   "Video Editor",
@@ -71,7 +78,17 @@ function type() {
   setTimeout(type, isDeleting ? deletingSpeed : typingSpeed);
 }
 
-// Start typing effect after page loads
+// Start typing and setup hamburger toggle
 document.addEventListener("DOMContentLoaded", () => {
   type();
+
+  // Hamburger menu toggle
+  const menuToggle = document.querySelector(".menu-toggle");
+  const nav = document.querySelector("nav");
+
+  if (menuToggle && nav) {
+    menuToggle.addEventListener("click", () => {
+      nav.classList.toggle("open");
+    });
+  }
 });
