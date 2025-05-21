@@ -129,24 +129,26 @@
     class="flex-1 ml-0 md:ml-64 p-6 space-y-24 overflow-x-hidden"
   >
     <!-- Home Section -->
-  <section id="home" class="min-h-screen relative text-white">
-  <!-- Background image -->
-  <div class="absolute inset-0 -z-10">
+  <section id="home" class="relative w-full min-h-screen text-white overflow-hidden">
+  <!-- Background Image -->
+  <div class="absolute inset-0 z-0">
     <img 
-      src="My.jpg" 
+      src="img.jpg" 
       alt="Background" 
       class="w-full h-full object-cover object-[95%] sm:object-[55%] md:object-right"
     />
   </div>
 
-  <!-- Content -->
-  <div class="relative z-10 flex flex-col justify-start items-center text-center min-h-screen px-4 pt-20 md:items-start md:text-left md:px-16 md:pt-32">
-    <h1 class="text-3xl md:text-4xl font-bold">Chandrashekhar Saini</h1>
-    <div class="mt-2 text-lg md:text-xl">
+  <!-- Foreground Content -->
+  <div class="relative z-10 flex flex-col justify-start md:justify-center h-full p-6 pt-20 md:pt-0">
+    <h1 class="text-4xl font-bold">Chandrashekhar Saini</h1>
+    <div class="mt-2 text-xl">
       I'm a <span id="typing-text" class="font-semibold border-b-4 border-blue-500"></span><span class="animate-pulse">|</span>
     </div>
   </div>
 </section>
+
+
 
 
 
