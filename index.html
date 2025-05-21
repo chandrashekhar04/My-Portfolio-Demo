@@ -32,8 +32,9 @@
   </style>
 </head>
 <body class="font-poppins bg-white flex min-h-screen">
-  <aside id="sidebar" class="fixed top-0 left-0 h-full w-64 bg-gray-900 text-white flex flex-col p-6 overflow-y-auto z-20 transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out">
-    <div class="profile mb-8 text-center">
+  <aside id="sidebar"
+  class="fixed top-0 left-0 h-full w-64 bg-gray-900 text-white flex flex-col p-6 overflow-y-auto z-20 transform -translate-x-full transition-all duration-500 ease-in-out md:translate-x-0 md:static md:transform-none">
+    <div id="overlay" class="fixed inset-0 z-10 bg-black bg-opacity-40 backdrop-blur-sm transition-opacity duration-300 opacity-0 pointer-events-none md:hidden></div><div class="profile mb-8 text-center">
       <img src="Profile.jpg" alt="Profile Photo" class="mx-auto w-28 h-28 rounded-full object-cover border-2 border-white" />
       <h2 class="mt-4 text-xl font-semibold">Chandrashekhar Saini</h2>
     </div>
@@ -96,10 +97,23 @@
   </main>
   <script>
     const menuToggle = document.getElementById('menu-toggle');
-    const sidebar = document.getElementById('sidebar');
-    menuToggle.addEventListener('click', () => {
-      sidebar.classList.toggle('-translate-x-full');
-    });
+const sidebar = document.getElementById('sidebar');
+const overlay = document.getElementById('overlay');
+
+menuToggle.addEventListener('click', () => {
+  const isOpen = !sidebar.classList.contains('-translate-x-full');
+  sidebar.classList.toggle('-translate-x-full');
+
+  // Show or hide overlay
+  overlay.classList.toggle('opacity-0');
+  overlay.classList.toggle('pointer-events-none');
+});
+
+// Close sidebar when clicking on the overlay
+overlay.addEventListener('click', () => {
+  sidebar.classList.add('-translate-x-full');
+  overlay.classList.add('opacity-0', 'pointer-events-none');
+});
     const sections = document.querySelectorAll('main section');
     const navLinks = document.querySelectorAll('nav ul li a');
     const observer = new IntersectionObserver((entries) => {
