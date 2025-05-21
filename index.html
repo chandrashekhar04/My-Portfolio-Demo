@@ -27,15 +27,18 @@
       0%, 50% { opacity: 1; }
       50.01%, 100% { opacity: 0; }
     }
+    body.menu-open {
+      overflow: hidden;
+    }
   </style>
 </head>
 <body class="min-h-screen font-poppins flex md:flex-row flex-col relative bg-white">
 
   <!-- Overlay -->
-  <div id="overlay" class="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm z-10 hidden md:hidden transition-opacity duration-300"></div>
+  <div id="overlay" class="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm z-10 hidden transition-opacity duration-300"></div>
 
   <!-- Sidebar -->
-  <aside id="sidebar" class="md:fixed md:left-0 md:top-0 md:h-full w-64 bg-gray-900 text-white p-6 z-20 transform -translate-x-full md:translate-x-0 transition-transform duration-500 ease-in-out overflow-y-auto">
+  <aside id="sidebar" class="fixed md:static md:left-0 md:top-0 md:h-full w-64 bg-gray-900 text-white p-6 z-20 transform -translate-x-full md:translate-x-0 transition-transform duration-500 ease-in-out overflow-y-auto">
     <div class="profile mb-8 text-center">
       <img src="Profile.jpg" alt="Profile Photo" class="mx-auto w-28 h-28 rounded-full object-cover border-2 border-white" />
       <h2 class="mt-4 text-xl font-semibold">Chandrashekhar Saini</h2>
@@ -86,27 +89,27 @@
       </div>
     </section>
 
-    <section id="about" class="min-h-screen bg-white p-8 rounded shadow-lg">
+    <section id="about" class="min-h-screen bg-white p-8">
       <h2 class="text-3xl font-semibold mb-4">About Me</h2>
       <p>I'm a passionate Graphic Designer and Video Editor.</p>
     </section>
 
-    <section id="resume" class="min-h-screen bg-white p-8 rounded shadow-lg">
+    <section id="resume" class="min-h-screen bg-white p-8">
       <h2 class="text-3xl font-semibold mb-4">Resume</h2>
       <p>Experience & Education</p>
     </section>
 
-    <section id="portfolio" class="min-h-screen bg-white p-8 rounded shadow-lg">
+    <section id="portfolio" class="min-h-screen bg-white p-8">
       <h2 class="text-3xl font-semibold mb-4">Portfolio</h2>
       <p>Some of my works.</p>
     </section>
 
-    <section id="services" class="min-h-screen bg-white p-8 rounded shadow-lg">
+    <section id="services" class="min-h-screen bg-white p-8">
       <h2 class="text-3xl font-semibold mb-4">Services</h2>
       <p>What I can offer.</p>
     </section>
 
-    <section id="contact" class="min-h-screen bg-white p-8 rounded shadow-lg">
+    <section id="contact" class="min-h-screen bg-white p-8">
       <h2 class="text-3xl font-semibold mb-4">Contact</h2>
       <p>Let's connect.</p>
     </section>
@@ -117,33 +120,29 @@
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('overlay');
 
-    menuToggle.addEventListener('click', () => {
-      sidebar.classList.toggle('-translate-x-full');
-      overlay.classList.toggle('hidden');
-    });
+    function openMenu() {
+      sidebar.classList.remove('-translate-x-full');
+      overlay.classList.remove('hidden');
+      document.body.classList.add('menu-open');
+    }
 
-    overlay.addEventListener('click', () => {
+    function closeMenu() {
       sidebar.classList.add('-translate-x-full');
       overlay.classList.add('hidden');
+      document.body.classList.remove('menu-open');
+    }
+
+    menuToggle.addEventListener('click', () => {
+      if (sidebar.classList.contains('-translate-x-full')) {
+        openMenu();
+      } else {
+        closeMenu();
+      }
     });
 
-    const sections = document.querySelectorAll('main section');
-    const navLinks = document.querySelectorAll('nav ul li a');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const id = entry.target.getAttribute('id');
-          navLinks.forEach((link) => {
-            link.classList.remove('active', 'bg-blue-600');
-            if (link.getAttribute('href').substring(1) === id) {
-              link.classList.add('active', 'bg-blue-600');
-            }
-          });
-        }
-      });
-    }, { threshold: 0.6 });
-    sections.forEach((section) => observer.observe(section));
+    overlay.addEventListener('click', closeMenu);
 
+    const navLinks = document.querySelectorAll('nav ul li a');
     navLinks.forEach((link) => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
@@ -152,8 +151,7 @@
         if (targetSection) {
           targetSection.scrollIntoView({ behavior: 'smooth' });
           if (window.innerWidth < 768) {
-            sidebar.classList.add('-translate-x-full');
-            overlay.classList.add('hidden');
+            closeMenu();
           }
         }
       });
@@ -177,6 +175,22 @@
       setTimeout(type, isDeleting ? 80 : 150);
     }
     document.addEventListener('DOMContentLoaded', type);
+
+    const sections = document.querySelectorAll('main section');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          navLinks.forEach((link) => {
+            link.classList.remove('active', 'bg-blue-600');
+            if (link.getAttribute('href').substring(1) === id) {
+              link.classList.add('active', 'bg-blue-600');
+            }
+          });
+        }
+      });
+    }, { threshold: 0.6 });
+    sections.forEach((section) => observer.observe(section));
   </script>
 </body>
 </html>
