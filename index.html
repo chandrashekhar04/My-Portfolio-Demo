@@ -280,15 +280,11 @@
       setDarkMode(!enabled);
     });
 
-   window.addEventListener('load', function () {
-  // Use a slight delay to ensure Safari completes page render
-  setTimeout(function () {
-    if (performance.navigation.type === 1 || performance.getEntriesByType("navigation")[0].type === "reload") {
-      window.scrollTo(0, 0);
-    }
-  }, 100);
-});
-
+    window.addEventListener('DOMContentLoaded', () => {
+      if (localStorage.getItem('darkMode') === 'enabled') {
+        setDarkMode(true);
+      }
+    });
 
   </script>
 
