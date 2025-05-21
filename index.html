@@ -130,17 +130,24 @@
   >
     <!-- Home Section -->
   <section id="home" class="min-h-screen relative text-white">
-  <div class="absolute inset-0 -z-10 bg-cover bg-center bg-no-repeat bg-[url('img.jpg')]">
-  <img src="img.jpg" alt="Background" class="w-full h-full object-cover" />
-</div>
+  <!-- Background image -->
+  <div class="absolute inset-0 -z-10">
+    <img 
+      src="img.jpg" 
+      alt="Background" 
+      class="w-full h-full object-cover object-right md:object-right lg:object-right xl:object-right object-center md:object-cover"
+    />
+  </div>
 
-  <div class="relative z-10 p-8">
-    <h1 class="text-4xl font-bold">Chandrashekhar Saini</h1>
-    <div class="mt-2 text-xl">
+  <!-- Content -->
+  <div class="relative z-10 flex flex-col justify-start items-center text-center min-h-screen px-4 pt-20 md:items-start md:text-left md:px-16 md:pt-32">
+    <h1 class="text-3xl md:text-4xl font-bold">Chandrashekhar Saini</h1>
+    <div class="mt-2 text-lg md:text-xl">
       I'm a <span id="typing-text" class="font-semibold border-b-4 border-blue-500"></span><span class="animate-pulse">|</span>
     </div>
   </div>
 </section>
+
 
 
 
