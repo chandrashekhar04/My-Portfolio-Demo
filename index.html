@@ -196,12 +196,11 @@
     }, { threshold: 0.6 });
     sections.forEach((section) => observer.observe(section));
     // Force scroll to top on page reload to land on the Home section
-document.addEventListener("DOMContentLoaded", () => {
-  if (performance.navigation.type === 1) {
-    // Page was reloaded
-    window.scrollTo(0, 0);
-  }
-});
+window.addEventListener('DOMContentLoaded', function () {
+    if (performance.getEntriesByType("navigation")[0].type === "reload") {
+      window.scrollTo(0, 0);
+    }
+  });
 
 };
 
