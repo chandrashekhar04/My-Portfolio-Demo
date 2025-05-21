@@ -130,21 +130,18 @@
     class="flex-1 ml-0 md:ml-64 p-6 space-y-24 overflow-x-hidden"
   >
     <!-- Home Section -->
-    <section
-      id="home"
-      class="min-h-screen relative text-white flex flex-col justify-center"
-    >
-      <div
-        class="absolute inset-0 -z-10"
-        style="background-image: url('img.jpg'); background-size: cover; background-position: center;"
-      ></div>
-      <h1 class="text-5xl font-bold drop-shadow-lg">Chandrashekhar Saini</h1>
-      <div class="mt-4 text-2xl flex items-center">
-        <span>I'm a&nbsp;</span>
-        <span id="typing-text" class="font-semibold"></span>
-        <span class="cursor"></span>
-      </div>
-    </section>
+    <section id="home" class="min-h-screen relative text-white">
+  <div class="fixed inset-0 -z-10">
+    <img src="img.jpg" alt="Background" class="w-full h-full object-cover" />
+  </div>
+  <div class="relative z-10 p-8">
+    <h1 class="text-4xl font-bold">Chandrashekhar Saini</h1>
+    <div class="mt-2 text-xl">
+      I'm a <span id="typing-text" class="font-semibold border-b-4 border-blue-500"></span><span class="animate-pulse">|</span>
+    </div>
+  </div>
+</section>
+
 
     <!-- Other Sections -->
     <section
