@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Chandrashekhar Saini</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
@@ -30,117 +30,105 @@
     body.menu-open {
       overflow: hidden;
     }
-    /* Sidebar fixed and no vertical scroll on desktop */
-    #sidebar {
-      overflow-y: visible;
-    }
-    /* Footer adjustments */
-    footer {
-      white-space: nowrap;
-    }
   </style>
 </head>
-<body class="min-h-screen font-poppins bg-white">
+<body class="min-h-screen font-sans bg-white">
 
   <div class="flex flex-col md:flex-row h-full">
 
     <!-- Overlay -->
-    <div id="overlay" class="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm z-10 hidden transition-opacity duration-300"></div>
+    <div id="overlay" class="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm z-10 hidden"></div>
 
     <!-- Sidebar -->
-    <aside id="sidebar" class="fixed md:sticky top-0 left-0 md:top-0 md:min-h-screen w-64 bg-gray-900 text-white p-6 z-20 transform -translate-x-full md:translate-x-0 transition-transform duration-500 ease-in-out flex flex-col">
-      <div class="profile mb-8 text-center">
-        <img src="Profile.jpg" alt="Profile Photo" class="mx-auto w-28 h-28 rounded-full object-cover border-2 border-white" />
-        <h2 class="mt-4 text-xl font-semibold">Chandrashekhar Saini</h2>
+    <aside id="sidebar" class="fixed md:sticky top-0 left-0 md:h-screen w-64 bg-gray-900 text-white p-6 z-20 transform -translate-x-full md:translate-x-0 transition-transform duration-500 ease-in-out overflow-y-auto flex flex-col justify-between">
+      <div>
+        <div class="profile mb-6 text-center">
+          <img src="Profile.jpg" alt="Profile" class="mx-auto w-24 h-24 rounded-full object-cover border-2 border-white" />
+          <h2 class="mt-4 text-lg font-semibold leading-tight">Chandrashekhar<br />Saini</h2>
+        </div>
+        <div class="social-icons flex justify-center space-x-4 mb-6 text-lg">
+          <a href="#" class="hover:text-green-400"><i class="fab fa-behance"></i></a>
+          <a href="#" class="hover:text-blue-600"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="hover:text-pink-500"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="hover:text-blue-400"><i class="fab fa-skype"></i></a>
+          <a href="#" class="hover:text-blue-700"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <nav>
+          <ul class="space-y-3 text-base">
+            <li><a href="#home" class="nav-link flex items-center space-x-2 p-2 rounded hover:bg-gray-700 transition-colors"><i class="fas fa-house"></i><span>Home</span></a></li>
+            <li><a href="#about" class="nav-link flex items-center space-x-2 p-2 rounded hover:bg-gray-700 transition-colors"><i class="fas fa-user"></i><span>About</span></a></li>
+            <li><a href="#skills" class="nav-link flex items-center space-x-2 p-2 rounded hover:bg-gray-700 transition-colors"><i class="fas fa-cogs"></i><span>Skills</span></a></li>
+            <li><a href="#portfolio" class="nav-link flex items-center space-x-2 p-2 rounded hover:bg-gray-700 transition-colors"><i class="fas fa-briefcase"></i><span>Portfolio</span></a></li>
+            <li><a href="#resume" class="nav-link flex items-center space-x-2 p-2 rounded hover:bg-gray-700 transition-colors"><i class="fas fa-file-alt"></i><span>Resume</span></a></li>
+            <li><a href="#services" class="nav-link flex items-center space-x-2 p-2 rounded hover:bg-gray-700 transition-colors"><i class="fas fa-lightbulb"></i><span>Services</span></a></li>
+            <li><a href="#achievements" class="nav-link flex items-center space-x-2 p-2 rounded hover:bg-gray-700 transition-colors"><i class="fas fa-trophy"></i><span>Achievements</span></a></li>
+            <li><a href="#contact" class="nav-link flex items-center space-x-2 p-2 rounded hover:bg-gray-700 transition-colors"><i class="fas fa-envelope"></i><span>Contact</span></a></li>
+          </ul>
+        </nav>
       </div>
-      <div class="social-icons flex justify-center space-x-6 mb-8 text-xl">
-        <a href="#" class="hover:text-green-400"><i class="fab fa-behance"></i></a>
-        <a href="#" class="hover:text-blue-600"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" class="hover:text-pink-500"><i class="fab fa-instagram"></i></a>
-        <a href="#" class="hover:text-blue-400"><i class="fab fa-skype"></i></a>
-        <a href="#" class="hover:text-blue-700"><i class="fab fa-linkedin-in"></i></a>
-      </div>
-      <nav>
-        <ul class="space-y-3 text-sm">
-          <li><a href="#home" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200 active:bg-blue-600"><i class="fas fa-home"></i><span>Home</span></a></li>
-          <li><a href="#about" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200"><i class="fas fa-user"></i><span>About</span></a></li>
-          <li><a href="#skills" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200"><i class="fas fa-code"></i><span>Skills</span></a></li>
-          <li><a href="#portfolio" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200"><i class="fas fa-briefcase"></i><span>Portfolio</span></a></li>
-          <li><a href="#resume" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200"><i class="fas fa-file"></i><span>Resume</span></a></li>
-          <li><a href="#services" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200"><i class="fas fa-cogs"></i><span>Services</span></a></li>
-          <li><a href="#achievements" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200"><i class="fas fa-trophy"></i><span>Achievements</span></a></li>
-          <li><a href="#contact" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200"><i class="fas fa-envelope"></i><span>Contact</span></a></li>
-        </ul>
-      </nav>
-      <footer class="mt-auto text-center text-gray-400 py-4 text-sm sm:text-base md:text-sm whitespace-nowrap">
-        &copy; Copyright <strong>Chandrashekhar</strong>
+      <footer class="text-xs text-gray-400 text-center mt-6 md:mt-0">
+        &copy; 2025 <strong>Chandrashekhar</strong>. All rights reserved.
       </footer>
     </aside>
 
     <!-- Mobile Toggle -->
-    <button id="menu-toggle" class="fixed top-5 left-5 z-30 md:hidden bg-gray-900 text-white p-3 rounded-md">
-      <i class="fas fa-bars text-xl"></i>
+    <button id="menu-toggle" class="fixed top-4 left-4 z-30 md:hidden bg-gray-900 text-white p-2 rounded-md">
+      <i class="fas fa-bars text-lg"></i>
     </button>
 
     <!-- Main Content -->
     <main id="main-content" class="flex-1 transition-all duration-500 overflow-x-hidden">
-      
       <section id="home" class="min-h-screen relative text-white">
         <div class="absolute inset-0 -z-10">
-          <img src="My.jpg" alt="Background" class="w-full h-full object-cover object-[95%] sm:object-[55%] md:object-right" />
+          <img src="My.jpg" alt="Background" class="w-full h-full object-cover object-center" />
         </div>
-        <div class="relative z-10 flex flex-col justify-start md:justify-center items-center md:items-start text-center md:text-left min-h-screen px-4 sm:px-8 md:px-16 pt-20 sm:pt-24">
-          <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight">
-            Chandrashekhar Saini
-          </h1>
-          <div class="mt-4 flex items-center justify-center md:justify-start gap-2">
-            <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl">I'm a</span>
+        <div class="relative z-10 flex flex-col justify-center items-center text-center min-h-screen px-4 pt-32 sm:pt-40">
+          <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-2 whitespace-nowrap">Chandrashekhar Saini</h1>
+          <div class="flex items-center gap-2 text-lg sm:text-xl md:text-2xl">
+            <span>I'm a</span>
             <div class="relative">
-              <span id="typing-text" class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold inline-block"></span>
-              <span class="absolute left-0 bottom-0 w-full h-1 bg-blue-500" id="underline"></span>
+              <span id="typing-text" class="font-semibold"></span>
+              <span class="cursor"></span>
             </div>
-            <span class="cursor"></span>
           </div>
         </div>
       </section>
 
-      <section id="about" class="min-h-screen bg-white p-8">
-        <h2 class="text-3xl font-semibold mb-4 underline decoration-blue-500 underline-offset-4">About</h2>
-        <p>I'm a passionate Graphic Designer and Video Editor.</p>
+      <section id="about" class="min-h-screen p-8">
+        <h2 class="text-3xl font-bold border-b-4 inline-block border-blue-500 mb-6">About</h2>
+        <p>I’m a passionate Graphic Designer and Video Editor.</p>
       </section>
 
-      <section id="skills" class="min-h-screen bg-white p-8">
-        <h2 class="text-3xl font-semibold mb-4 underline decoration-blue-500 underline-offset-4">Skills</h2>
-        <p>My core competencies and technical skills.</p>
+      <section id="skills" class="min-h-screen p-8">
+        <h2 class="text-3xl font-bold border-b-4 inline-block border-blue-500 mb-6">Skills</h2>
+        <p>Here are some of my technical and creative skills.</p>
       </section>
 
-      <section id="portfolio" class="min-h-screen bg-white p-8">
-        <h2 class="text-3xl font-semibold mb-4 underline decoration-blue-500 underline-offset-4">Portfolio</h2>
-        <p>Some of my works.</p>
+      <section id="portfolio" class="min-h-screen p-8">
+        <h2 class="text-3xl font-bold border-b-4 inline-block border-blue-500 mb-6">Portfolio</h2>
+        <p>Here are a few of my design projects.</p>
       </section>
 
-      <section id="resume" class="min-h-screen bg-white p-8">
-        <h2 class="text-3xl font-semibold mb-4 underline decoration-blue-500 underline-offset-4">Resume</h2>
-        <p>Experience & Education</p>
+      <section id="resume" class="min-h-screen p-8">
+        <h2 class="text-3xl font-bold border-b-4 inline-block border-blue-500 mb-6">Resume</h2>
+        <p>My qualifications and experience.</p>
       </section>
 
-      <section id="services" class="min-h-screen bg-white p-8">
-        <h2 class="text-3xl font-semibold mb-4 underline decoration-blue-500 underline-offset-4">Services</h2>
-        <p>What I can offer.</p>
+      <section id="services" class="min-h-screen p-8">
+        <h2 class="text-3xl font-bold border-b-4 inline-block border-blue-500 mb-6">Services</h2>
+        <p>What I offer professionally.</p>
       </section>
 
-      <section id="achievements" class="min-h-screen bg-white p-8">
-        <h2 class="text-3xl font-semibold mb-4 underline decoration-blue-500 underline-offset-4">Achievements</h2>
-        <p>My accomplishments and awards.</p>
+      <section id="achievements" class="min-h-screen p-8">
+        <h2 class="text-3xl font-bold border-b-4 inline-block border-blue-500 mb-6">Achievements</h2>
+        <p>Some of my proud accomplishments.</p>
       </section>
 
-      <section id="contact" class="min-h-screen bg-white p-8">
-        <h2 class="text-3xl font-semibold mb-4 underline decoration-blue-500 underline-offset-4">Contact</h2>
-        <p>Let's connect.</p>
+      <section id="contact" class="min-h-screen p-8">
+        <h2 class="text-3xl font-bold border-b-4 inline-block border-blue-500 mb-6">Contact</h2>
+        <p>Let's get in touch.</p>
       </section>
-
     </main>
-
   </div>
 
   <script>
@@ -170,45 +158,54 @@
 
     overlay.addEventListener('click', closeMenu);
 
-    const navLinks = document.querySelectorAll('nav ul li a');
-    navLinks.forEach((link) => {
-      link.addEventListener('click', (e) => {
+    // Smooth scroll and highlight nav
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('main section');
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', e => {
         e.preventDefault();
-        const targetId = link.getAttribute('href').substring(1);
-        const targetSection = document.getElementById(targetId);
-        if (targetSection) {
-          targetSection.scrollIntoView({ behavior: 'smooth' });
-        }
-        if (window.innerWidth < 768) {
-          closeMenu();
+        const id = link.getAttribute('href').slice(1);
+        const target = document.getElementById(id);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+          if (window.innerWidth < 768) closeMenu();
         }
       });
     });
 
-    // Typing animation code
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          navLinks.forEach(link => {
+            link.classList.remove('bg-blue-600', 'text-white');
+            if (link.getAttribute('href').slice(1) === id) {
+              link.classList.add('bg-blue-600', 'text-white');
+            }
+          });
+        }
+      });
+    }, { threshold: 0.6 });
+
+    sections.forEach(section => observer.observe(section));
+
+    // Typing animation
     const words = ['Creative Graphic Designer', 'Video Editor', 'Tech Enthusiast', 'Lifelong Learner'];
     const typingText = document.getElementById('typing-text');
-    let wordIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
+    let wordIndex = 0, charIndex = 0, isDeleting = false;
 
     function type() {
-      const currentWord = words[wordIndex];
-      if (!isDeleting) {
-        typingText.textContent = currentWord.substring(0, charIndex + 1);
-        charIndex++;
-        if (charIndex === currentWord.length) {
-          isDeleting = true;
-          setTimeout(type, 2000);
-          return;
-        }
-      } else {
-        typingText.textContent = currentWord.substring(0, charIndex - 1);
-        charIndex--;
-        if (charIndex === 0) {
-          isDeleting = false;
-          wordIndex = (wordIndex + 1) % words.length;
-        }
+      const word = words[wordIndex];
+      typingText.textContent = isDeleting ? word.substring(0, --charIndex) : word.substring(0, ++charIndex);
+      if (!isDeleting && charIndex === word.length) {
+        isDeleting = true;
+        setTimeout(type, 2000);
+        return;
+      }
+      if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        wordIndex = (wordIndex + 1) % words.length;
       }
       setTimeout(type, isDeleting ? 80 : 150);
     }
