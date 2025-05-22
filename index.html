@@ -75,7 +75,7 @@
     <!-- Main Content -->
     <main id="main-content" class="flex-1 transition-all duration-500 overflow-x-hidden">
       <section id="home" class="min-h-screen relative text-white">
-        <div class="absolute inset-0 -z-10">
+        <div class="absolute inset-0 z-0">
           <img src="My.jpg" alt="Background" class="w-full h-full object-cover object-[95%] sm:object-[55%] md:object-right" />
         </div>
         <div class="relative z-10 flex flex-col justify-start md:justify-center items-center md:items-start text-center md:text-left min-h-screen px-4 sm:px-8 md:px-16 pt-20 sm:pt-24">
@@ -116,7 +116,6 @@
         <p>Let's connect.</p>
       </section>
     </main>
-
   </div>
 
   <script>
@@ -161,7 +160,8 @@
       });
     });
 
-    const words = ['Creative Graphic Designer', 'Video Editor', 'Tech Enthusiast', 'Lifelong Learner'];
+    // 👇 Typing animation with new taglines
+    const words = ['Graphic Designer', 'Video Editor', 'Digital Creator', 'Visual Artist'];
     const typingText = document.getElementById('typing-text');
     let wordIndex = 0, charIndex = 0, isDeleting = false;
     function type() {
@@ -195,19 +195,15 @@
       });
     }, { threshold: 0.6 });
     sections.forEach((section) => observer.observe(section));
-    // Force scroll to top on page reload to land on the Home section
-// Scroll to top on reload across all devices (laptop + mobile)
-window.addEventListener('load', function () {
-  // Use a slight delay to ensure Safari completes page render
-  setTimeout(function () {
-    if (performance.navigation.type === 1 || performance.getEntriesByType("navigation")[0].type === "reload") {
-      window.scrollTo(0, 0);
-    }
-  }, 100);
-});
 
-
-
+    // Scroll to top on page reload
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        if (performance.navigation.type === 1 || performance.getEntriesByType("navigation")[0].type === "reload") {
+          window.scrollTo(0, 0);
+        }
+      }, 100);
+    });
   </script>
 </body>
 </html>
