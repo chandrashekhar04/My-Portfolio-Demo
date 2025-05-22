@@ -27,6 +27,9 @@
       0%, 50% { opacity: 1; }
       50.01%, 100% { opacity: 0; }
     }
+    html {
+      scroll-behavior: smooth;
+    }
     body.menu-open {
       overflow: hidden;
     }
@@ -34,7 +37,7 @@
 </head>
 <body class="min-h-screen font-sans bg-white">
 
-  <div class="flex flex-col md:flex-row h-full">
+  <div class="flex flex-col md:flex-row md:overflow-hidden h-full">
 
     <!-- Overlay -->
     <div id="overlay" class="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm z-10 hidden"></div>
@@ -44,7 +47,7 @@
       <div>
         <div class="profile mb-6 text-center">
           <img src="Profile.jpg" alt="Profile" class="mx-auto w-24 h-24 rounded-full object-cover border-2 border-white" />
-          <h2 class="mt-4 text-lg font-semibold leading-tight">Chandrashekhar<br />Saini</h2>
+          <h2 class="mt-4 text-lg font-semibold leading-tight whitespace-nowrap">Chandrashekhar Saini</h2>
         </div>
         <div class="social-icons flex justify-center space-x-4 mb-6 text-lg">
           <a href="#" class="hover:text-green-400"><i class="fab fa-behance"></i></a>
@@ -66,7 +69,7 @@
           </ul>
         </nav>
       </div>
-      <footer class="text-xs text-gray-400 text-center mt-6 md:mt-0">
+      <footer class="mt-auto text-xs text-gray-400 text-center">
         &copy; 2025 <strong>Chandrashekhar</strong>. All rights reserved.
       </footer>
     </aside>
@@ -82,9 +85,9 @@
         <div class="absolute inset-0 -z-10">
           <img src="My.jpg" alt="Background" class="w-full h-full object-cover object-center" />
         </div>
-        <div class="relative z-10 flex flex-col justify-center items-center text-center min-h-screen px-4 pt-32 sm:pt-40">
-          <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-2 whitespace-nowrap">Chandrashekhar Saini</h1>
-          <div class="flex items-center gap-2 text-lg sm:text-xl md:text-2xl">
+        <div class="relative z-10 flex flex-col justify-start items-center text-center min-h-screen px-4 pt-24 sm:pt-32 md:items-start md:text-left md:pl-24 md:justify-center">
+          <h1 class="text-xl sm:text-2xl md:text-5xl font-bold mb-2 whitespace-nowrap">Chandrashekhar Saini</h1>
+          <div class="flex flex-wrap justify-center md:justify-start gap-2 text-sm sm:text-base md:text-2xl">
             <span>I'm a</span>
             <div class="relative">
               <span id="typing-text" class="font-semibold"></span>
@@ -191,10 +194,10 @@
     sections.forEach(section => observer.observe(section));
 
     // Typing animation
-    const words = ['Creative Graphic Designer', 'Video Editor', 'Tech Enthusiast', 'Lifelong Learner'];
+    const words = ['Graphic Designer', 'Video Editor', 'Digital Creator', 'Visual Artist'];
     const typingText = document.getElementById('typing-text');
     let wordIndex = 0, charIndex = 0, isDeleting = false;
-
+  
     function type() {
       const word = words[wordIndex];
       typingText.textContent = isDeleting ? word.substring(0, --charIndex) : word.substring(0, ++charIndex);
