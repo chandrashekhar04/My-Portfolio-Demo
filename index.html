@@ -25,7 +25,7 @@
       margin-left: 2px;
       animation: blink 1s steps(2, start) infinite;
       vertical-align: middle;
-      height: 1em; /* Adjust based on font-size */
+      height: 1em;
     }
     @keyframes blink {
       0%, 50% { opacity: 1; }
@@ -40,137 +40,147 @@
     /* Underline for typing text */
     #underline {
       height: 2px;
+      background-color: #3b82f6; /* Blue-500 */
+      display: block;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      transition: width 0.2s ease;
+      pointer-events: none;
     }
 
     /* Active link styling for sidebar */
     .nav-link.active-link {
-        background-color: #2563eb; /* Blue-600 */
-        color: white; /* Ensure text is white */
+      background-color: #2563eb; /* Blue-600 */
+      color: white !important; /* Ensure text is white */
     }
 
-    /* --- NEW CSS FOR FIXED BACKGROUND AND CONTENT SLIDE --- */
+    /* --- FIXED BACKGROUND AND CONTENT SLIDE --- */
 
-    /* Fixed background image container */
     #fixed-background {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: -2; /* Below everything */
+      z-index: -2;
       background-image: url('My.jpg');
       background-size: cover;
-      /* Adjust as needed: right side of the person */
-      background-position: 95% center;
-      /* Responsive adjustments for background-position */
-      @media (min-width: 640px) { /* sm */
-        background-position: 55% center; /* Adjust for smaller desktops/larger tablets */
+      background-position: right center;
+    }
+
+    /* Responsive background-position */
+    @media (max-width: 767px) {
+      #fixed-background {
+        background-position: 95% center;
       }
-      @media (min-width: 768px) { /* md */
-        background-position: right center; /* Person on the right */
+    }
+    @media (min-width: 640px) and (max-width: 767px) {
+      #fixed-background {
+        background-position: 55% center;
+      }
+    }
+    @media (min-width: 768px) {
+      #fixed-background {
+        background-position: right center;
       }
     }
 
-    /* Overlay for the fixed background for readability */
     #home-overlay {
-      position: fixed; /* Also fixed */
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.4); /* Dark overlay */
-      z-index: -1; /* Above the image, below content */
+      background: rgba(0, 0, 0, 0.4);
+      z-index: -1;
     }
 
-    /* Main content wrapper to handle slide-in effect */
     #content-wrapper {
       position: relative;
-      z-index: 10; /* Above background and overlay */
-      margin-left: 0; /* Default for mobile */
-      min-height: 100vh; /* Ensure it takes full height */
-      /* For desktop, shift content to the right of the sidebar */
-      @media (min-width: 768px) { /* md */
-        margin-left: 16rem; /* Width of the sidebar */
+      z-index: 10;
+      margin-left: 0;
+      min-height: 100vh;
+    }
+    @media (min-width: 768px) {
+      #content-wrapper {
+        margin-left: 16rem; /* width of sidebar */
       }
     }
 
-    /* Style for individual sections when they are 'active' (visible) */
     .content-section {
-      min-height: 100vh; /* Make sure each section takes full viewport height */
-      padding: 2rem; /* Default padding for all sections */
-      /* Initial state: off-screen to the right by default, but hidden initially */
+      min-height: 100vh;
+      padding: 2rem;
       transform: translateX(100%);
       opacity: 0;
-      position: absolute; /* Stack sections on top of each other */
+      position: absolute;
       top: 0;
       left: 0;
-      width: 100%; /* Take full width of content-wrapper on mobile */
-      background-color: white; /* White background for content */
-      box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Subtle shadow */
-      transition: none; /* Anime.js will handle transitions, so remove CSS transition */
-      display: none; /* Hidden by default, will be set to flex when active */
-      overflow-y: auto; /* Allow scrolling if content is too long within the section */
-
-      /* Responsive adjustments for section width to leave space for the person */
-      @media (min-width: 768px) { /* md */
-        /* Adjusted width and margin-left to make content section wider and leave less space for the person,
-           as per the provided image concept where content takes up most of the right side.
-           Adjust 25% if you want the person to be more visible or less visible. */
-        width: calc(100% - 25%); /* Content takes 75% of the available space */
-        margin-left: 25%; /* Shifts content to the left to reveal person area */
+      width: 100%;
+      background-color: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      transition: none;
+      display: none;
+      overflow-y: auto;
+      z-index: 1;
+    }
+    @media (min-width: 768px) {
+      .content-section {
+        width: calc(100% - 25%);
+        margin-left: 25%;
       }
     }
 
-    /* Home section has special styling as it's the initial view */
-    #home.content-section { /* Apply to home section itself */
-      background-color: transparent; /* No background for home section */
-      box-shadow: none; /* No shadow */
-      display: flex; /* Flexbox for centering home content */
+    #home.content-section {
+      background-color: transparent;
+      box-shadow: none;
+      display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-      color: white; /* Text color for home section */
-      margin-left: 0; /* Home section takes full width of content-wrapper */
+      color: white;
+      margin-left: 0;
       width: 100%;
-      padding: 2rem; /* Keep default padding for home */
+      padding: 2rem;
+      position: relative;
     }
 
-    /* When a section is active/visible */
     .content-section.active {
-      /* transform and opacity will be handled by Anime.js */
-      display: flex; /* Ensure it's visible and behaves like a flex container */
-      flex-direction: column; /* Stack content vertically */
-      justify-content: flex-start; /* Align content to top */
-      align-items: flex-start; /* Align text to left */
-      /* Padding adjusted to make content look bigger/more spaced out */
-      padding-top: 4rem; /* More top padding */
-      padding-left: 4rem; /* More left padding for content */
-      padding-right: 4rem; /* Consistent right padding */
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding-top: 4rem;
+      padding-left: 4rem;
+      padding-right: 4rem;
+      z-index: 2;
     }
 
-    /* Specific adjustments for home section when active (after animation) */
     #home.content-section.active {
-        justify-content: center; /* Re-center home content vertically */
-        align-items: center; /* Re-center home content horizontally */
-        padding-left: 2rem; /* Default padding */
-        padding-right: 2rem; /* Default padding */
-        padding-top: 2rem; /* Default padding */
+      justify-content: center;
+      align-items: center;
+      padding-left: 2rem;
+      padding-right: 2rem;
+      padding-top: 2rem;
+      position: relative;
+      transform: translateX(0);
+      opacity: 1;
+      display: flex !important;
+      z-index: 3;
     }
 
-    /* Adjust for mobile screens where no person area is needed */
     @media (max-width: 767px) {
       .content-section {
-        width: 100%; /* Take full width on mobile */
-        margin-left: 0; /* No margin-left on mobile */
-        padding-left: 2rem; /* Consistent padding */
+        width: 100%;
+        margin-left: 0;
+        padding-left: 2rem;
         padding-right: 2rem;
-        padding-top: 5rem; /* Ensure padding for all sections on mobile */
+        padding-top: 5rem;
       }
-      /* Adjust mobile menu toggle for better visibility */
       #menu-toggle {
-        top: 1rem; /* Move slightly down */
-        left: 1rem; /* Move slightly right */
+        top: 1rem;
+        left: 1rem;
       }
     }
   </style>
@@ -204,204 +214,201 @@
           <li><a href="#contact" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200"><i class="fas fa-envelope"></i><span>Contact</span></a></li>
         </ul>
       </nav>
-      <footer class="mt-auto text-center text-sm text-gray-400 py-6">
-        &copy; Copyright <strong>Chandrashekhar</strong>
-      </footer>
     </aside>
 
-    <button id="menu-toggle" class="fixed top-5 left-5 z-30 md:hidden bg-gray-900 text-white p-3 rounded-md">
-      <i class="fas fa-bars text-xl"></i>
+    <button id="menu-toggle" class="fixed top-4 left-4 z-30 md:hidden bg-gray-900 text-white p-2 rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+      <i class="fas fa-bars"></i>
     </button>
 
-    <div id="content-wrapper" class="relative">
-      <section id="home" class="content-section" data-section-id="home">
-        <div class="relative z-10 w-full h-full flex flex-col items-center justify-center"> <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight" id="heading">Chandrashekhar Saini</h1>
-          <div class="mt-4 flex items-center justify-center gap-2"> <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl">I'm a</span>
-            <div class="relative">
-              <span id="typing-text" class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold inline-block"></span>
-              <span class="absolute left-0 bottom-0 w-full bg-blue-500" id="underline"></span>
-            </div>
-            <span class="cursor"></span>
-          </div>
-        </div>
+    <main id="content-wrapper" class="relative z-10 flex-grow">
+      <section id="home" class="content-section active">
+        <h1 class="text-5xl font-extrabold mb-6 tracking-tight text-white leading-tight">I'm Chandrashekhar Saini</h1>
+        <p class="text-3xl font-semibold text-white relative inline-block">
+          <span id="typing-text"></span><span class="cursor"></span>
+          <span id="underline"></span>
+        </p>
       </section>
 
-      <section id="about" class="content-section" data-section-id="about">
-        <div class="max-w-4xl w-full"> <h2 class="text-4xl font-bold mb-6 text-blue-600 border-b-2 border-blue-600 inline-block">About Me</h2>
-          <p class="text-gray-700 text-lg mb-6 whitespace-pre-line text-left">
-            Hello, I’m Chandrashekhar Saini, born in Phulera, Jaipur, Rajasthan. I have been involved in computer education since 2018 and have always enjoyed teaching and learning about technology. I completed my schooling at Government Senior Secondary School, Phulera, and pursued my BCA from Subodh College in Jaipur. During my studies, I learned various programming languages and software, which ignited my passion for web development and software design.
-
-            I am an enthusiastic and dedicated individual with a strong desire to learn and grow in the field of technology. I am proficient in **HTML, CSS, JavaScript, and PHP**. I also have experience with **SQL** for database management and is familiar with frameworks like **Tailwind CSS** for rapid UI development. My skills extend to **graphic design using Canva and Photoshop**, allowing me to create visually appealing content. I am always keen on exploring new technologies and improving my existing skill set. I believe in continuous learning and adapting to new challenges.
-          </p>
-          <h3 class="text-2xl font-semibold text-blue-600 mb-4">Basic Details</h3>
-          <ul class="mb-8 text-gray-700 text-lg space-y-1">
-            <li><i class="fas fa-birthday-cake mr-2 text-blue-600"></i><strong>Birthday:</strong> 03 Oct 2001</li>
-            <li><i class="fas fa-envelope mr-2 text-blue-600"></i><strong>Email:</strong> <a href="mailto:sainichandrashekhar34@gmail.com" class="text-blue-600 hover:underline">sainichandrashekhar34@gmail.com</a></li>
-            <li><i class="fas fa-phone-alt mr-2 text-blue-600"></i><strong>Phone:</strong> <a href="tel:+919116878369" class="text-blue-600 hover:underline">+91 9116878369</a></li>
-            <li><i class="fas fa-map-marker-alt mr-2 text-blue-600"></i><strong>City:</strong> Phulera, Jaipur</li>
-          </ul>
-          <p class="text-gray-700 text-lg text-left">
-            So far, every task I’ve been assigned has been completed with full dedication. I am confident in my abilities to handle new responsibilities and contribute positively to any project. I am a team player who can also work independently when required. My goal is to leverage my skills and passion to create impactful digital experiences and contribute to innovative solutions. I am excited to explore new opportunities where I can apply my knowledge and continue to grow as a professional.
-          </p>
-        </div>
+      <section id="about" class="content-section">
+        <h2 class="text-4xl font-bold mb-6">About Me</h2>
+        <p class="text-lg leading-relaxed max-w-3xl">
+          Hello! I'm Chandrashekhar, a passionate web developer with a love for creating beautiful and functional websites...
+        </p>
       </section>
 
-      <section id="resume" class="content-section" data-section-id="resume">
-        <div class="max-w-4xl w-full">
-          <h2 class="text-4xl font-bold mb-6 text-blue-600 border-b-2 border-blue-600 inline-block">Resume</h2>
-          <p class="text-gray-700 text-lg">Experience & Education</p>
-          </div>
+      <section id="resume" class="content-section">
+        <h2 class="text-4xl font-bold mb-6">Resume</h2>
+        <p>Resume content here...</p>
       </section>
 
-      <section id="portfolio" class="content-section" data-section-id="portfolio">
-        <div class="max-w-4xl w-full">
-          <h2 class="text-4xl font-bold mb-6 text-blue-600 border-b-2 border-blue-600 inline-block">Portfolio</h2>
-          <p class="text-gray-700 text-lg">Some of my works.</p>
-          </div>
+      <section id="portfolio" class="content-section">
+        <h2 class="text-4xl font-bold mb-6">Portfolio</h2>
+        <p>Portfolio content here...</p>
       </section>
 
-      <section id="services" class="content-section" data-section-id="services">
-        <div class="max-w-4xl w-full">
-          <h2 class="text-4xl font-bold mb-6 text-blue-600 border-b-2 border-blue-600 inline-block">Services</h2>
-          <p class="text-gray-700 text-lg">What I can offer.</p>
-          </div>
+      <section id="services" class="content-section">
+        <h2 class="text-4xl font-bold mb-6">Services</h2>
+        <p>Services content here...</p>
       </section>
 
-      <section id="contact" class="content-section" data-section-id="contact">
-        <div class="max-w-4xl w-full">
-          <h2 class="text-4xl font-bold mb-6 text-blue-600 border-b-2 border-blue-600 inline-block">Contact</h2>
-          <p class="text-gray-700 text-lg">Let's connect.</p>
-          </div>
+      <section id="contact" class="content-section">
+        <h2 class="text-4xl font-bold mb-6">Contact</h2>
+        <p>Contact details here...</p>
       </section>
-    </div>
+    </main>
   </div>
 
   <script>
-    // Typing effect data
-    const roles = ["Web Developer", "Designer", "Freelancer"];
-    let roleIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    const typingTextElement = document.getElementById('typing-text');
-    const underlineElement = document.getElementById('underline');
-    const typeSpeed = 100;
-    const deleteSpeed = 50;
-    const delayBetweenRoles = 1500;
+    // Sidebar toggle for mobile
+    const sidebar = document.getElementById('sidebar');
+    const menuToggle = document.getElementById('menu-toggle');
+    const overlay = document.getElementById('overlay');
+    const body = document.body;
 
-    function typeWriter() {
-        const currentRole = roles[roleIndex];
-        if (isDeleting) {
-            typingTextElement.textContent = currentRole.substring(0, charIndex - 1);
-            underlineElement.style.width = `${typingTextElement.offsetWidth}px`;
-            charIndex--;
-        } else {
-            typingTextElement.textContent = currentRole.substring(0, charIndex + 1);
-            underlineElement.style.width = `${typingTextElement.offsetWidth}px`;
-            charIndex++;
-        }
-
-        if (!isDeleting && charIndex === currentRole.length) {
-            setTimeout(() => isDeleting = true, delayBetweenRoles);
-        } else if (isDeleting && charIndex === 0) {
-            isDeleting = false;
-            roleIndex = (roleIndex + 1) % roles.length;
-        }
-
-        const currentSpeed = isDeleting ? deleteSpeed : typeSpeed;
-        setTimeout(typeWriter, currentSpeed);
+    function openMenu() {
+      sidebar.style.transform = 'translateX(0)';
+      overlay.classList.remove('hidden');
+      body.classList.add('menu-open');
+    }
+    function closeMenu() {
+      sidebar.style.transform = 'translateX(-100%)';
+      overlay.classList.add('hidden');
+      body.classList.remove('menu-open');
     }
 
-    // Function to show a specific section
-    function showSection(sectionId) {
-        const sections = document.querySelectorAll('.content-section');
-        const activeNavLinks = document.querySelectorAll('.nav-link');
-
-        // First, hide all sections and reset their state immediately for a clean animation
-        sections.forEach(section => {
-            section.classList.remove('active'); // Remove active class immediately
-            section.style.transform = 'translateX(100%)'; // Reset position
-            section.style.opacity = '0'; // Reset opacity
-            section.style.display = 'none'; // Hide immediately
-        });
-
-        // Find the target section
-        const targetSection = document.getElementById(sectionId);
-        if (!targetSection) return; // Exit if section not found
-
-        // Prepare the target section for animation
-        targetSection.style.display = 'flex'; // Make it flex so anime.js can animate it
-        targetSection.style.transform = 'translateX(100%)'; // Start from off-screen right
-        targetSection.style.opacity = '0'; // Start invisible
-
-        // Animate the target section
-        anime({
-            targets: targetSection,
-            translateX: ['100%', '0%'], // Slide from right to current position
-            opacity: [0, 1], // Fade in
-            duration: 800, // Slightly longer duration for smoother feel
-            easing: 'easeOutQuad', // Good easing for slide-in
-            delay: 100, // Small delay before animation starts
-            complete: function() {
-                targetSection.classList.add('active'); // Add active class after animation completes
-            }
-        });
-
-        // Update active navigation link
-        activeNavLinks.forEach(link => {
-            link.classList.remove('active-link');
-            if (link.getAttribute('href') === `#${sectionId}`) {
-                link.classList.add('active-link');
-            }
-        });
-
-        // Close mobile sidebar if open
-        if (window.innerWidth < 768) {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('overlay');
-            const body = document.body;
-            sidebar.classList.add('-translate-x-full');
-            overlay.classList.add('hidden');
-            body.classList.remove('menu-open');
-        }
-    }
-
-
-    document.addEventListener('DOMContentLoaded', () => {
-        typeWriter(); // Start the typing animation
-
-        // Initial setup for mobile sidebar
-        const menuToggle = document.getElementById('menu-toggle');
-        const sidebar = document.getElementById('sidebar');
-        const overlay = document.getElementById('overlay');
-        const body = document.body;
-
-        menuToggle.addEventListener('click', () => {
-            sidebar.classList.toggle('-translate-x-full');
-            overlay.classList.toggle('hidden');
-            body.classList.toggle('menu-open');
-        });
-
-        overlay.addEventListener('click', () => {
-            sidebar.classList.add('-translate-x-full');
-            overlay.classList.add('hidden');
-            body.classList.remove('menu-open');
-        });
-
-        // Handle navigation clicks
-        const navLinks = document.querySelectorAll('.nav-link');
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault(); // Prevent default anchor jump
-
-                const targetId = link.getAttribute('href').substring(1);
-                showSection(targetId);
-            });
-        });
-
-        // Initial section display based on hash or default to home
-        const initialHash = window.location.hash ? window.location.hash.substring(1) : 'home';
-        showSection(initialHash); // Call showSection for initial load
+    menuToggle.addEventListener('click', () => {
+      if (sidebar.style.transform === 'translateX(0px)') {
+        closeMenu();
+      } else {
+        openMenu();
+      }
     });
+    overlay.addEventListener('click', closeMenu);
+
+    // Handle nav link clicks
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('.content-section');
+
+    function showSection(targetId) {
+      sections.forEach(section => {
+        if (section.id === targetId) {
+          section.classList.add('active');
+          section.style.display = 'flex';
+          anime({
+            targets: section,
+            translateX: ['100%', '0%'],
+            opacity: [0, 1],
+            easing: 'easeOutQuad',
+            duration: 500,
+          });
+        } else {
+          anime({
+            targets: section,
+            translateX: ['0%', '100%'],
+            opacity: [1, 0],
+            easing: 'easeInQuad',
+            duration: 400,
+            complete: () => {
+              section.classList.remove('active');
+              section.style.display = 'none';
+            }
+          });
+        }
+      });
+    }
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href').substring(1);
+        showSection(targetId);
+        setActiveLink(targetId);
+        if (window.innerWidth < 768) closeMenu();
+      });
+    });
+
+    function setActiveLink(id) {
+      navLinks.forEach(link => {
+        if (link.getAttribute('href').substring(1) === id) {
+          link.classList.add('active-link');
+        } else {
+          link.classList.remove('active-link');
+        }
+      });
+    }
+
+    // Initialize with home active
+    setActiveLink('home');
+    showSection('home');
+
+    // Typing animation
+    const texts = ["Frontend Developer", "React Developer", "Designer", "Freelancer"];
+    let count = 0;
+    let index = 0;
+    let currentText = '';
+    let isDeleting = false;
+    const typingSpeed = 120;
+    const deletingSpeed = 60;
+    const typingElement = document.getElementById('typing-text');
+    const underline = document.getElementById('underline');
+
+    function type() {
+      const fullText = texts[count];
+      if (!isDeleting) {
+        currentText = fullText.substring(0, index + 1);
+        index++;
+        typingElement.textContent = currentText;
+        updateUnderlineWidth();
+        if (index === fullText.length) {
+          isDeleting = true;
+          setTimeout(type, 1500);
+          return;
+        }
+      } else {
+        currentText = fullText.substring(0, index - 1);
+        index--;
+        typingElement.textContent = currentText;
+        updateUnderlineWidth();
+        if (index === 0) {
+          isDeleting = false;
+          count = (count + 1) % texts.length;
+          setTimeout(type, 300);
+          return;
+        }
+      }
+      setTimeout(type, isDeleting ? deletingSpeed : typingSpeed);
+    }
+
+    // Adjust underline width to typing text width
+    function updateUnderlineWidth() {
+      if (!typingElement.textContent) {
+        underline.style.width = '0px';
+        return;
+      }
+      // create a temporary span to measure width
+      const tempSpan = document.createElement('span');
+      tempSpan.style.visibility = 'hidden';
+      tempSpan.style.position = 'absolute';
+      tempSpan.style.whiteSpace = 'nowrap';
+      tempSpan.style.fontSize = window.getComputedStyle(typingElement).fontSize;
+      tempSpan.style.fontWeight = window.getComputedStyle(typingElement).fontWeight;
+      tempSpan.textContent = typingElement.textContent;
+      document.body.appendChild(tempSpan);
+      const width = tempSpan.getBoundingClientRect().width;
+      document.body.removeChild(tempSpan);
+      underline.style.width = width + 'px';
+    }
+
+    // Start typing animation on DOM load
+    window.addEventListener('load', () => {
+      updateUnderlineWidth();
+      type();
+    });
+
+    // Optional: smooth scroll to top on section show (can be removed if unwanted)
+    function scrollToTopSmooth() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   </script>
 </body>
 </html>
