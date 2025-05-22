@@ -64,7 +64,7 @@
       background-position: 95% center;
       /* Responsive adjustments for background-position */
       @media (min-width: 640px) { /* sm */
-        background-position: 55% center;
+        background-position: 55% center; /* Adjust for smaller desktops/larger tablets */
       }
       @media (min-width: 768px) { /* md */
         background-position: right center; /* Person on the right */
@@ -97,25 +97,27 @@
     /* Style for individual sections when they are 'active' (visible) */
     .content-section {
       min-height: 100vh; /* Make sure each section takes full viewport height */
-      padding: 2rem; /* Add some padding */
+      padding: 2rem; /* Default padding for all sections */
       /* Initial state: off-screen to the right by default, but hidden initially */
       transform: translateX(100%);
       opacity: 0;
       position: absolute; /* Stack sections on top of each other */
       top: 0;
       left: 0;
-      width: 100%; /* Take full width of content-wrapper */
-      /* This ensures the section content doesn't cover the person part of the image */
+      width: 100%; /* Take full width of content-wrapper on mobile */
       background-color: white; /* White background for content */
       box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Subtle shadow */
-      transition: transform 0.8s ease-out, opacity 0.8s ease-out; /* Animation */
+      transition: none; /* Anime.js will handle transitions, so remove CSS transition */
       display: none; /* Hidden by default, will be set to flex when active */
       overflow-y: auto; /* Allow scrolling if content is too long within the section */
 
       /* Responsive adjustments for section width to leave space for the person */
       @media (min-width: 768px) { /* md */
-        width: calc(100% - 30%); /* Adjust to leave space for the person */
-        margin-left: 30%; /* Shift content to the left to reveal person */
+        /* Adjusted width and margin-left to make content section wider and leave less space for the person,
+           as per the provided image concept where content takes up most of the right side.
+           Adjust 25% if you want the person to be more visible or less visible. */
+        width: calc(100% - 25%); /* Content takes 75% of the available space */
+        margin-left: 25%; /* Shifts content to the left to reveal person area */
       }
     }
 
@@ -131,26 +133,28 @@
       color: white; /* Text color for home section */
       margin-left: 0; /* Home section takes full width of content-wrapper */
       width: 100%;
+      padding: 2rem; /* Keep default padding for home */
     }
 
     /* When a section is active/visible */
     .content-section.active {
-      transform: translateX(0%); /* Slide into view */
-      opacity: 1; /* Fade in */
+      /* transform and opacity will be handled by Anime.js */
       display: flex; /* Ensure it's visible and behaves like a flex container */
       flex-direction: column; /* Stack content vertically */
-      /* Specific alignment for non-home sections */
       justify-content: flex-start; /* Align content to top */
       align-items: flex-start; /* Align text to left */
-      padding-top: 5rem; /* Add top padding for content */
-      padding-left: 4rem; /* More padding on left for content */
+      /* Padding adjusted to make content look bigger/more spaced out */
+      padding-top: 4rem; /* More top padding */
+      padding-left: 4rem; /* More left padding for content */
+      padding-right: 4rem; /* Consistent right padding */
     }
 
-    /* Specific adjustments for home section when active */
+    /* Specific adjustments for home section when active (after animation) */
     #home.content-section.active {
         justify-content: center; /* Re-center home content vertically */
         align-items: center; /* Re-center home content horizontally */
         padding-left: 2rem; /* Default padding */
+        padding-right: 2rem; /* Default padding */
         padding-top: 2rem; /* Default padding */
     }
 
@@ -162,6 +166,11 @@
         padding-left: 2rem; /* Consistent padding */
         padding-right: 2rem;
         padding-top: 5rem; /* Ensure padding for all sections on mobile */
+      }
+      /* Adjust mobile menu toggle for better visibility */
+      #menu-toggle {
+        top: 1rem; /* Move slightly down */
+        left: 1rem; /* Move slightly right */
       }
     }
   </style>
@@ -206,9 +215,8 @@
 
     <div id="content-wrapper" class="relative">
       <section id="home" class="content-section" data-section-id="home">
-        <div class="relative z-10 w-full h-full"> <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight" id="heading">Chandrashekhar Saini</h1>
-          <div class="mt-4 flex items-center justify-center md:justify-start gap-2">
-            <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl">I'm a</span>
+        <div class="relative z-10 w-full h-full flex flex-col items-center justify-center"> <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight" id="heading">Chandrashekhar Saini</h1>
+          <div class="mt-4 flex items-center justify-center gap-2"> <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl">I'm a</span>
             <div class="relative">
               <span id="typing-text" class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold inline-block"></span>
               <span class="absolute left-0 bottom-0 w-full bg-blue-500" id="underline"></span>
@@ -308,28 +316,33 @@
         const sections = document.querySelectorAll('.content-section');
         const activeNavLinks = document.querySelectorAll('.nav-link');
 
+        // First, hide all sections and reset their state immediately for a clean animation
         sections.forEach(section => {
-            if (section.id === sectionId) {
-                // Ensure section is visible for animation
-                section.style.display = 'flex'; // Set display to flex to make it visible
-                // Animate the target section
-                anime({
-                    targets: section,
-                    translateX: ['100%', '0%'], // Slide from right
-                    opacity: [0, 1], // Fade in
-                    duration: 800,
-                    easing: 'easeOutQuad',
-                    delay: 100 // Small delay
-                }).finished.then(() => {
-                    // Add active class after animation
-                    section.classList.add('active');
-                });
-            } else {
-                // Hide non-active sections and reset their position
-                section.classList.remove('active');
-                section.style.transform = 'translateX(100%)'; // Reset to off-screen
-                section.style.opacity = '0'; // Reset opacity
-                section.style.display = 'none'; // Hide immediately after reset
+            section.classList.remove('active'); // Remove active class immediately
+            section.style.transform = 'translateX(100%)'; // Reset position
+            section.style.opacity = '0'; // Reset opacity
+            section.style.display = 'none'; // Hide immediately
+        });
+
+        // Find the target section
+        const targetSection = document.getElementById(sectionId);
+        if (!targetSection) return; // Exit if section not found
+
+        // Prepare the target section for animation
+        targetSection.style.display = 'flex'; // Make it flex so anime.js can animate it
+        targetSection.style.transform = 'translateX(100%)'; // Start from off-screen right
+        targetSection.style.opacity = '0'; // Start invisible
+
+        // Animate the target section
+        anime({
+            targets: targetSection,
+            translateX: ['100%', '0%'], // Slide from right to current position
+            opacity: [0, 1], // Fade in
+            duration: 800, // Slightly longer duration for smoother feel
+            easing: 'easeOutQuad', // Good easing for slide-in
+            delay: 100, // Small delay before animation starts
+            complete: function() {
+                targetSection.classList.add('active'); // Add active class after animation completes
             }
         });
 
@@ -340,7 +353,18 @@
                 link.classList.add('active-link');
             }
         });
+
+        // Close mobile sidebar if open
+        if (window.innerWidth < 768) {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            const body = document.body;
+            sidebar.classList.add('-translate-x-full');
+            overlay.classList.add('hidden');
+            body.classList.remove('menu-open');
+        }
     }
+
 
     document.addEventListener('DOMContentLoaded', () => {
         typeWriter(); // Start the typing animation
@@ -369,11 +393,6 @@
             link.addEventListener('click', (e) => {
                 e.preventDefault(); // Prevent default anchor jump
 
-                if (window.innerWidth < 768) { // Close sidebar on mobile after click
-                    sidebar.classList.add('-translate-x-full');
-                    overlay.classList.add('hidden');
-                    body.classList.remove('menu-open');
-                }
                 const targetId = link.getAttribute('href').substring(1);
                 showSection(targetId);
             });
@@ -381,13 +400,7 @@
 
         // Initial section display based on hash or default to home
         const initialHash = window.location.hash ? window.location.hash.substring(1) : 'home';
-        showSection(initialHash);
-
-        // Set initial active link on load
-        const initialNavLink = document.querySelector(`a[href="#${initialHash}"]`);
-        if (initialNavLink) {
-            initialNavLink.classList.add('active-link');
-        }
+        showSection(initialHash); // Call showSection for initial load
     });
   </script>
 </body>
