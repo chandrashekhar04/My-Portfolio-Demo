@@ -8,43 +8,14 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
   <style>
-    aside::-webkit-scrollbar {
-      width: 6px;
-    }
-    aside::-webkit-scrollbar-thumb {
-      background: #4ade80;
-      border-radius: 3px;
-    }
-    .cursor {
-      display: inline-block;
-      background-color: #3b82f6;
-      width: 2px;
-      margin-left: 2px;
-      animation: blink 1s steps(2, start) infinite;
-      vertical-align: middle;
-      height: 1em;
-    }
-    @keyframes blink {
-      0%, 50% { opacity: 1; }
-      50.01%, 100% { opacity: 0; }
-    }
-    body.menu-open {
-      overflow: hidden;
-    }
-    #underline {
-      height: 2px;
-    }
-   #about {
-  opacity: 0;
-  transform: translateY(100px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-#about.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
+    aside::-webkit-scrollbar { width: 6px; }
+    aside::-webkit-scrollbar-thumb { background: #4ade80; border-radius: 3px; }
+    .cursor { display: inline-block; background-color: #3b82f6; width: 2px; margin-left: 2px; animation: blink 1s steps(2, start) infinite; vertical-align: middle; height: 1em; }
+    @keyframes blink { 0%, 50% { opacity: 1; } 50.01%, 100% { opacity: 0; } }
+    body.menu-open { overflow: hidden; }
+    #underline { height: 2px; }
+    #about { transform: translateY(100%); opacity: 0; transition: transform 1s ease, opacity 1s ease; position: relative; z-index: 1; }
+    #about.visible { transform: translateY(0); opacity: 1; }
   </style>
 </head>
 <body class="min-h-screen font-poppins bg-white">
@@ -64,12 +35,9 @@
       </div>
       <nav>
         <ul class="space-y-4 text-lg">
-          <li><a href="#home" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200 active:bg-blue-600"><i class="fas fa-home"></i><span>Home</span></a></li>
+          <li><a href="#home" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200"><i class="fas fa-home"></i><span>Home</span></a></li>
           <li><a href="#about" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200"><i class="fas fa-user"></i><span>About</span></a></li>
-          <li><a href="#resume" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200"><i class="fas fa-file"></i><span>Resume</span></a></li>
-          <li><a href="#portfolio" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200"><i class="fas fa-briefcase"></i><span>Portfolio</span></a></li>
-          <li><a href="#services" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200"><i class="fas fa-concierge-bell"></i><span>Services</span></a></li>
-          <li><a href="#contact" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200"><i class="fas fa-envelope"></i><span>Contact</span></a></li>
+          <!-- Add other links as needed -->
         </ul>
       </nav>
       <footer class="mt-auto text-center text-sm text-gray-400 py-6">
@@ -81,9 +49,9 @@
       <i class="fas fa-bars text-xl"></i>
     </button>
 
-    <main id="main-content" class="flex-1 transition-all duration-500 overflow-x-hidden relative">
-       <section id="home" class="min-h-screen relative text-white">
-        <div class="absolute inset-0 -z-10" id="home-overlay"></div>
+    <main id="main-content" class="flex-1 transition-all duration-500 overflow-x-hidden">
+      <section id="home" class="min-h-screen relative text-white">
+        <div class="absolute inset-0 -z-10 bg-black bg-opacity-30"></div>
         <img src="My.jpg" alt="Background" class="absolute inset-0 w-full h-full object-cover object-[95%] sm:object-[55%] md:object-right -z-10" />
         <div class="relative z-10 flex flex-col justify-start md:justify-center items-center md:items-start text-center md:text-left min-h-screen px-4 sm:px-8 md:px-16 pt-20 sm:pt-24">
           <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight" id="heading">Chandrashekhar Saini</h1>
@@ -98,97 +66,84 @@
         </div>
       </section>
 
-
-     <section id="about" class="min-h-screen bg-white p-8">
-  <div class="max-w-3xl mx-auto">
-    <h2 class="text-4xl font-bold mb-6 text-blue-600 border-b-2 border-blue-600 inline-block">About Me</h2>
-          <p class="text-gray-700 text-lg mb-6 whitespace-pre-line text-left">
-            Hello, I’m Chandrashekhar Saini, born in Phulera, Jaipur. I have a strong academic foundation with a Diploma in Computer Science & Engineering (2022) and a Bachelor of Arts (2023). Currently, I’m pursuing my Master’s in Computer Applications (MCA) to strengthen my technical and creative skills further. My professional journey as a Graphic Designer began in 2023, sparked by a growing interest in visual storytelling. I started with Canva, where I learned to design creatives and understand the basics of visual communication. Over time, I developed a deeper interest in video editing, which led me to explore Adobe Premiere Pro and, eventually, Adobe After Effects to enhance my motion graphics capabilities. Along the way, I’ve also picked up working knowledge of tools like Adobe Photoshop and Adobe Illustrator, which I use occasionally for design tasks such as high editing.
-I enjoy working on corporate-style projects, where I can apply both my design and editing skills. I’m continuously learning and evolving, and my journey from beginner tools to more advanced software reflects my curiosity, adaptability, and commitment to growth. I aim to create graphics and videos that not only look good but also communicate, connect emotionally, and deliver results.
+      <section id="about" class="min-h-screen bg-white p-8">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-4xl font-bold mb-6 text-blue-600 border-b-2 border-blue-600 inline-block">About Me</h2>
+          <p class="text-gray-700 text-lg mb-6">
+            Hello, I’m Chandrashekhar Saini, born in Phulera, Jaipur... [your full about content here]
           </p>
-          <h3 class="text-2xl font-semibold text-blue-600 mb-4">Basic Details</h3>
-          <ul class="mb-8 text-gray-700 text-lg space-y-1">
-            <li><i class="fas fa-birthday-cake mr-2 text-blue-600"></i><strong>Birthday:</strong> 03 Oct 2001</li>
-            <li><i class="fas fa-envelope mr-2 text-blue-600"></i><strong>Email:</strong> <a href="mailto:sainichandrashekhar34@gmail.com" class="text-blue-600 hover:underline">sainichandrashekhar34@gmail.com</a></li>
-            <li><i class="fas fa-phone-alt mr-2 text-blue-600"></i><strong>Phone:</strong> <a href="tel:+919116878369" class="text-blue-600 hover:underline">+91 9116878369</a></li>
-            <li><i class="fas fa-map-marker-alt mr-2 text-blue-600"></i><strong>City:</strong> Phulera, Jaipur</li>
-          </ul>
-          <p class="text-gray-700 text-lg text-left">
-So far, every task I’ve been assigned has been completed with full dedication and responsibility. I’ve also earned achievements along the way, which motivate me to keep improving. I always try to learn something new and explore beyond my core field. My goal is to become more skilled, versatile, and valuable in every project I work on. I believe that consistent effort, curiosity, and passion are the keys to growth.          </p>
         </div>
       </section>
 
-      <section id="resume" class="min-h-screen bg-white p-8">
-        <h2 class="text-3xl font-semibold mb-4">Resume</h2>
-        <p>Experience & Education</p>
-      </section>
-
-      <section id="portfolio" class="min-h-screen bg-white p-8">
-        <h2 class="text-3xl font-semibold mb-4">Portfolio</h2>
-        <p>Some of my works.</p>
-      </section>
-
-      <section id="services" class="min-h-screen bg-white p-8">
-        <h2 class="text-3xl font-semibold mb-4">Services</h2>
-        <p>What I can offer.</p>
-      </section>
-
-      <section id="contact" class="min-h-screen bg-white p-8">
-        <h2 class="text-3xl font-semibold mb-4">Contact</h2>
-        <p>Let's connect.</p>
-      </section>
+      <!-- Add more sections here -->
     </main>
-
   </div>
 
   <script>
-  // Select nav links, home and about sections
-  const navLinks = document.querySelectorAll('nav ul li a');
-  const aboutSection = document.getElementById('about');
-  const homeSection = document.getElementById('home');
+    const menuToggle = document.getElementById('menu-toggle');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+    const navLinks = document.querySelectorAll('.nav-link');
 
-  // Show About with animation
-  function showAbout() {
-    aboutSection.classList.add('visible');
-    aboutSection.scrollIntoView({ behavior: 'smooth' });
-  }
+    function openMenu() {
+      sidebar.classList.remove('-translate-x-full');
+      overlay.classList.remove('hidden');
+      document.body.classList.add('menu-open');
+    }
+    function closeMenu() {
+      sidebar.classList.add('-translate-x-full');
+      overlay.classList.add('hidden');
+      document.body.classList.remove('menu-open');
+    }
 
-  // Hide About (when going back to Home)
-  function hideAbout() {
-    aboutSection.classList.remove('visible');
-    homeSection.scrollIntoView({ behavior: 'smooth' });
-  }
+    menuToggle.addEventListener('click', () => {
+      sidebar.classList.contains('-translate-x-full') ? openMenu() : closeMenu();
+    });
+    overlay.addEventListener('click', closeMenu);
 
-  // Handle nav link clicks
-  navLinks.forEach(link => {
-    link.addEventListener('click', e => {
-      const targetId = link.getAttribute('href').substring(1);
-      e.preventDefault();
-
-      if (targetId === 'about') {
-        showAbout();
-      } else if (targetId === 'home') {
-        hideAbout();
+    const typingText = document.getElementById('typing-text');
+    const words = ['Graphic Designer', 'Video Editor', 'Digital Creator', 'Visual Artist'];
+    let wordIndex = 0, charIndex = 0, isDeleting = false;
+    function type() {
+      const current = words[wordIndex];
+      typingText.textContent = current.substring(0, charIndex);
+      if (!isDeleting && charIndex++ === current.length) {
+        isDeleting = true;
+        setTimeout(type, 2000);
+      } else if (isDeleting && charIndex-- === 0) {
+        isDeleting = false;
+        wordIndex = (wordIndex + 1) % words.length;
+        setTimeout(type, 300);
       } else {
+        setTimeout(type, isDeleting ? 80 : 150);
+      }
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      type();
+      anime({ targets: '#heading', translateY: [40, 0], opacity: [0, 1], duration: 1000, easing: 'easeOutExpo' });
+    });
+
+    // Reveal About on scroll
+    const aboutSection = document.getElementById('about');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          aboutSection.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.4 });
+    observer.observe(aboutSection);
+
+    // Smooth Scroll
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href').substring(1);
         const target = document.getElementById(targetId);
         if (target) target.scrollIntoView({ behavior: 'smooth' });
-      }
-
-      // Close mobile menu if needed
-      if (window.innerWidth < 768 && typeof closeMenu === 'function') {
-        closeMenu();
-      }
+        if (window.innerWidth < 768) closeMenu();
+      });
     });
-  });
-
-  // Automatically trigger animation if About comes into view by scroll
-  window.addEventListener('scroll', () => {
-    const rect = aboutSection.getBoundingClientRect();
-    if (rect.top < window.innerHeight && rect.bottom > 0) {
-      aboutSection.classList.add('visible');
-    }
-  });
-</script>
-
+  </script>
 </body>
 </html>
