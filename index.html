@@ -8,46 +8,68 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
   <style>
+    /* Custom Scrollbar for sidebar */
     aside::-webkit-scrollbar {
       width: 6px;
     }
     aside::-webkit-scrollbar-thumb {
-      background: #4ade80;
+      background: #4ade80; /* Green-400 */
       border-radius: 3px;
     }
+
+    /* Typing Cursor Animation */
     .cursor {
       display: inline-block;
-      background-color: #3b82f6;
+      background-color: #3b82f6; /* Blue-500 */
       width: 2px;
       margin-left: 2px;
       animation: blink 1s steps(2, start) infinite;
       vertical-align: middle;
-      height: 1em;
+      height: 1em; /* Adjust based on font-size */
     }
     @keyframes blink {
       0%, 50% { opacity: 1; }
       50.01%, 100% { opacity: 0; }
     }
+
+    /* Prevent body scroll when menu is open on mobile */
     body.menu-open {
       overflow: hidden;
     }
+
+    /* Underline for typing text */
     #underline {
       height: 2px;
     }
+
+    /* Home section overlay for better text readability */
+    #home-overlay {
+      background: rgba(0, 0, 0, 0.4); /* Dark overlay */
+    }
+
+    /* Basic active link styling for sidebar */
+    .nav-link.active-link {
+        background-color: #2563eb; /* Blue-600 */
+        color: white; /* Ensure text is white */
+    }
+
+    /* Initial state for about section animation (hidden and slightly below) */
     #about {
-      position: absolute;
-      top: 0;
-      left: 16rem;
-      width: calc(100% - 16rem);
-      background-color: white;
-      z-index: 15;
-      padding-top: 5rem;
+      opacity: 0;
+      transform: translateY(100px);
+      transition: none; /* Disable default transitions for initial state */
+    }
+
+    /* Class to mark about section as animated */
+    #about.animated {
+        transition: transform 1s ease-out, opacity 1s ease-out; /* Smooth transition after initial state */
     }
   </style>
 </head>
 <body class="min-h-screen font-poppins bg-white">
   <div class="flex flex-col md:flex-row h-full">
     <div id="overlay" class="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm z-10 hidden transition-opacity duration-300"></div>
+
     <aside id="sidebar" class="fixed md:sticky top-0 left-0 md:h-screen w-64 bg-gray-900 text-white p-6 z-20 transform -translate-x-full md:translate-x-0 transition-transform duration-500 ease-in-out overflow-y-auto">
       <div class="profile mb-8 text-center">
         <img src="Profile.jpg" alt="Profile Photo" class="mx-auto w-28 h-28 rounded-full object-cover border-2 border-white" />
@@ -62,7 +84,7 @@
       </div>
       <nav>
         <ul class="space-y-4 text-lg">
-          <li><a href="#home" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200 active:bg-blue-600"><i class="fas fa-home"></i><span>Home</span></a></li>
+          <li><a href="#home" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200"><i class="fas fa-home"></i><span>Home</span></a></li>
           <li><a href="#about" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200"><i class="fas fa-user"></i><span>About</span></a></li>
           <li><a href="#resume" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200"><i class="fas fa-file"></i><span>Resume</span></a></li>
           <li><a href="#portfolio" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200"><i class="fas fa-briefcase"></i><span>Portfolio</span></a></li>
@@ -96,11 +118,13 @@
         </div>
       </section>
 
-      <section id="about" class="p-8">
+      <section id="about" class="p-8 bg-white">
         <div class="max-w-4xl mx-auto">
           <h2 class="text-4xl font-bold mb-6 text-blue-600 border-b-2 border-blue-600 inline-block">About Me</h2>
           <p class="text-gray-700 text-lg mb-6 whitespace-pre-line text-left">
-            Hello, I’m Chandrashekhar Saini, born in Phulera, Jaipur... [your full text remains here as-is]
+            Hello, I’m Chandrashekhar Saini, born in Phulera, Jaipur, Rajasthan. I have been involved in computer education since 2018 and have always enjoyed teaching and learning about technology. I completed my schooling at Government Senior Secondary School, Phulera, and pursued my BCA from Subodh College in Jaipur. During my studies, I learned various programming languages and software, which ignited my passion for web development and software design.
+
+            I am an enthusiastic and dedicated individual with a strong desire to learn and grow in the field of technology. I am proficient in **HTML, CSS, JavaScript, and PHP**. I also have experience with **SQL** for database management and am familiar with frameworks like **Tailwind CSS** for rapid UI development. My skills extend to **graphic design using Canva and Photoshop**, allowing me to create visually appealing content. I am always keen on exploring new technologies and improving my existing skill set. I believe in continuous learning and adapting to new challenges.
           </p>
           <h3 class="text-2xl font-semibold text-blue-600 mb-4">Basic Details</h3>
           <ul class="mb-8 text-gray-700 text-lg space-y-1">
@@ -110,35 +134,198 @@
             <li><i class="fas fa-map-marker-alt mr-2 text-blue-600"></i><strong>City:</strong> Phulera, Jaipur</li>
           </ul>
           <p class="text-gray-700 text-lg text-left">
-            So far, every task I’ve been assigned has been completed with full dedication... [your full text continues here as-is]
+            So far, every task I’ve been assigned has been completed with full dedication. I am confident in my abilities to handle new responsibilities and contribute positively to any project. I am a team player who can also work independently when required. My goal is to leverage my skills and passion to create impactful digital experiences and contribute to innovative solutions. I am excited to explore new opportunities where I can apply my knowledge and continue to grow as a professional.
           </p>
         </div>
       </section>
 
-      <section id="resume" class="min-h-screen bg-white p-8">
-        <h2 class="text-3xl font-semibold mb-4">Resume</h2>
-        <p>Experience & Education</p>
-      </section>
+      <section id="resume" class="min-h-screen bg-gray-100 p-8">
+        <h2 class="text-4xl font-bold mb-6 text-blue-600 border-b-2 border-blue-600 inline-block">Resume</h2>
+        <p class="text-gray-700 text-lg">Experience & Education</p>
+        </section>
 
       <section id="portfolio" class="min-h-screen bg-white p-8">
-        <h2 class="text-3xl font-semibold mb-4">Portfolio</h2>
-        <p>Some of my works.</p>
-      </section>
+        <h2 class="text-4xl font-bold mb-6 text-blue-600 border-b-2 border-blue-600 inline-block">Portfolio</h2>
+        <p class="text-gray-700 text-lg">Some of my works.</p>
+        </section>
 
-      <section id="services" class="min-h-screen bg-white p-8">
-        <h2 class="text-3xl font-semibold mb-4">Services</h2>
-        <p>What I can offer.</p>
-      </section>
+      <section id="services" class="min-h-screen bg-gray-100 p-8">
+        <h2 class="text-4xl font-bold mb-6 text-blue-600 border-b-2 border-blue-600 inline-block">Services</h2>
+        <p class="text-gray-700 text-lg">What I can offer.</p>
+        </section>
 
       <section id="contact" class="min-h-screen bg-white p-8">
-        <h2 class="text-3xl font-semibold mb-4">Contact</h2>
-        <p>Let's connect.</p>
-      </section>
+        <h2 class="text-4xl font-bold mb-6 text-blue-600 border-b-2 border-blue-600 inline-block">Contact</h2>
+        <p class="text-gray-700 text-lg">Let's connect.</p>
+        </section>
     </main>
   </div>
 
   <script>
-    // ... your existing JavaScript remains unchanged ...
+    // Typing effect data
+    const roles = ["Web Developer", "Designer", "Freelancer"];
+    let roleIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    const typingTextElement = document.getElementById('typing-text');
+    const underlineElement = document.getElementById('underline');
+    const typeSpeed = 100;
+    const deleteSpeed = 50;
+    const delayBetweenRoles = 1500;
+
+    function typeWriter() {
+        const currentRole = roles[roleIndex];
+        if (isDeleting) {
+            typingTextElement.textContent = currentRole.substring(0, charIndex - 1);
+            underlineElement.style.width = `${typingTextElement.offsetWidth}px`;
+            charIndex--;
+        } else {
+            typingTextElement.textContent = currentRole.substring(0, charIndex + 1);
+            underlineElement.style.width = `${typingTextElement.offsetWidth}px`;
+            charIndex++;
+        }
+
+        if (!isDeleting && charIndex === currentRole.length) {
+            setTimeout(() => isDeleting = true, delayBetweenRoles);
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            roleIndex = (roleIndex + 1) % roles.length;
+        }
+
+        const currentSpeed = isDeleting ? deleteSpeed : typeSpeed;
+        setTimeout(typeWriter, currentSpeed);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        typeWriter(); // Start the typing animation
+
+        // Menu toggle functionality for mobile sidebar
+        const menuToggle = document.getElementById('menu-toggle');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+        const body = document.body;
+
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('-translate-x-full');
+            overlay.classList.toggle('hidden');
+            body.classList.toggle('menu-open');
+        });
+
+        overlay.addEventListener('click', () => {
+            sidebar.classList.add('-translate-x-full');
+            overlay.classList.add('hidden');
+            body.classList.remove('menu-open');
+        });
+
+        // Close sidebar when a nav link is clicked (for mobile)
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                if (window.innerWidth < 768) { // Only on mobile/tablet sizes
+                    sidebar.classList.add('-translate-x-full');
+                    overlay.classList.add('hidden');
+                    body.classList.remove('menu-open');
+                }
+
+                // Smooth scroll to section
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+
+                // Remove active-link from all
+                navLinks.forEach(nav => nav.classList.remove('active-link'));
+                // Add active-link to the clicked one
+                link.classList.add('active-link');
+
+
+                if (targetSection) {
+                    // Use anime.js for smooth scroll
+                    anime({
+                        targets: 'html, body',
+                        scrollTop: targetSection.offsetTop,
+                        duration: 800,
+                        easing: 'easeInOutQuad',
+                        complete: () => {
+                            // Animate 'About' section if it's the target after scrolling
+                            if (targetId === 'about' && !targetSection.classList.contains('animated')) {
+                                animateAboutSection();
+                            }
+                        }
+                    });
+                }
+            });
+        });
+
+        // Add active class to current nav link on scroll
+        const sections = document.querySelectorAll('section');
+        window.addEventListener('scroll', () => {
+            let currentSectionId = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                // Determine if the middle of the section is in view
+                if (pageYOffset >= sectionTop - window.innerHeight / 3 && pageYOffset < sectionTop + sectionHeight - window.innerHeight / 3) {
+                    currentSectionId = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active-link'); // Remove from all
+                if (link.getAttribute('href').includes(currentSectionId)) {
+                    link.classList.add('active-link'); // Add to current
+                }
+            });
+
+            // Trigger 'About' section animation on scroll if it comes into view
+            const aboutSection = document.getElementById('about');
+            // Get position relative to viewport
+            const aboutRect = aboutSection.getBoundingClientRect();
+
+            // Check if about section is mostly in view and hasn't been animated yet
+            if (aboutRect.top < window.innerHeight * 0.75 && aboutRect.bottom > window.innerHeight * 0.25 && !aboutSection.classList.contains('animated')) {
+                animateAboutSection();
+                aboutSection.classList.add('animated'); // Mark as animated
+            }
+        });
+
+        // Function to animate the About section
+        function animateAboutSection() {
+            anime({
+                targets: '#about',
+                translateY: [100, 0], // Starts 100px below and moves to its natural position
+                opacity: [0, 1], // Starts invisible and fades in
+                duration: 1000,
+                easing: 'easeOutQuad',
+                delay: 200, // Small delay to ensure scroll finishes first
+            });
+        }
+
+        // Initial check for active link on page load
+        const initialHash = window.location.hash.substring(1);
+        if (initialHash) {
+            const initialLink = document.querySelector(`a[href="#${initialHash}"]`);
+            if (initialLink) {
+                initialLink.classList.add('active-link');
+                // If 'about' is the initial hash, animate it
+                if (initialHash === 'about' && !document.getElementById('about').classList.contains('animated')) {
+                    animateAboutSection();
+                    document.getElementById('about').classList.add('animated');
+                }
+            }
+        } else {
+            // Default to 'Home' if no hash on load
+            document.querySelector('a[href="#home"]').classList.add('active-link');
+        }
+
+        // Trigger 'About' section animation if it's already in view on load
+        // This handles cases where the page loads directly to a position where #about is visible
+        const aboutSectionOnLoad = document.getElementById('about');
+        const aboutRectOnLoad = aboutSectionOnLoad.getBoundingClientRect();
+        if (aboutRectOnLoad.top < window.innerHeight * 0.75 && aboutRectOnLoad.bottom > window.innerHeight * 0.25 && !aboutSectionOnLoad.classList.contains('animated')) {
+            animateAboutSection();
+            aboutSectionOnLoad.classList.add('animated');
+        }
+    });
   </script>
 </body>
 </html>
