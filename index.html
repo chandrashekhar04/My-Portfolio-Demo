@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Chandrashekhar Saini</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
   <style>
     aside::-webkit-scrollbar {
@@ -29,6 +30,9 @@
     }
     body.menu-open {
       overflow: hidden;
+    }
+    #underline {
+      height: 2px; /* reduced from default to make thinner */
     }
   </style>
 </head>
@@ -75,16 +79,15 @@
     <!-- Main Content -->
     <main id="main-content" class="flex-1 transition-all duration-500 overflow-x-hidden">
       <section id="home" class="min-h-screen relative text-white">
-        <div class="absolute inset-0 z-0">
-          <img src="My.jpg" alt="Background" class="w-full h-full object-cover object-[95%] sm:object-[55%] md:object-right" />
-        </div>
+        <div class="absolute inset-0 -z-10" id="home-overlay"></div>
+        <img src="My.jpg" alt="Background" class="absolute inset-0 w-full h-full object-cover object-[95%] sm:object-[55%] md:object-right -z-10" />
         <div class="relative z-10 flex flex-col justify-start md:justify-center items-center md:items-start text-center md:text-left min-h-screen px-4 sm:px-8 md:px-16 pt-20 sm:pt-24">
-          <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">Chandrashekhar Saini</h1>
+          <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight" id="heading">Chandrashekhar Saini</h1>
           <div class="mt-4 flex items-center justify-center md:justify-start gap-2">
             <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl">I'm a</span>
             <div class="relative">
               <span id="typing-text" class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold inline-block"></span>
-              <span class="absolute left-0 bottom-0 w-full h-1 bg-blue-500" id="underline"></span>
+              <span class="absolute left-0 bottom-0 w-full bg-blue-500" id="underline"></span>
             </div>
             <span class="cursor"></span>
           </div>
@@ -116,12 +119,14 @@
         <p>Let's connect.</p>
       </section>
     </main>
+
   </div>
 
   <script>
     const menuToggle = document.getElementById('menu-toggle');
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('overlay');
+    const homeOverlay = document.getElementById('home-overlay');
 
     function openMenu() {
       sidebar.classList.remove('-translate-x-full');
@@ -144,6 +149,9 @@
     });
 
     overlay.addEventListener('click', closeMenu);
+    homeOverlay.addEventListener('click', () => {
+      if (window.innerWidth < 768) closeMenu();
+    });
 
     const navLinks = document.querySelectorAll('nav ul li a');
     navLinks.forEach((link) => {
@@ -160,7 +168,6 @@
       });
     });
 
-    // 👇 Typing animation with new taglines
     const words = ['Graphic Designer', 'Video Editor', 'Digital Creator', 'Visual Artist'];
     const typingText = document.getElementById('typing-text');
     let wordIndex = 0, charIndex = 0, isDeleting = false;
@@ -178,7 +185,11 @@
       }
       setTimeout(type, isDeleting ? 80 : 150);
     }
-    document.addEventListener('DOMContentLoaded', type);
+    document.addEventListener('DOMContentLoaded', () => {
+      type();
+      anime({ targets: '#heading', translateY: [40, 0], opacity: [0, 1], duration: 1000, easing: 'easeOutExpo' });
+      anime({ targets: '#typing-text', delay: 200, opacity: [0, 1], translateY: [20, 0], duration: 800, easing: 'easeOutExpo' });
+    });
 
     const sections = document.querySelectorAll('main section');
     const observer = new IntersectionObserver((entries) => {
@@ -191,12 +202,18 @@
               link.classList.add('active', 'bg-blue-600');
             }
           });
+          anime({
+            targets: `#${id} h2`,
+            opacity: [0, 1],
+            translateY: [40, 0],
+            duration: 800,
+            easing: 'easeOutQuad'
+          });
         }
       });
     }, { threshold: 0.6 });
     sections.forEach((section) => observer.observe(section));
 
-    // Scroll to top on page reload
     window.addEventListener('load', function () {
       setTimeout(function () {
         if (performance.navigation.type === 1 || performance.getEntriesByType("navigation")[0].type === "reload") {
