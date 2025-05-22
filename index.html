@@ -42,32 +42,135 @@
       height: 2px;
     }
 
-    /* Home section overlay for better text readability */
-    #home-overlay {
-      background: rgba(0, 0, 0, 0.4); /* Dark overlay */
-    }
-
-    /* Basic active link styling for sidebar */
+    /* Active link styling for sidebar */
     .nav-link.active-link {
         background-color: #2563eb; /* Blue-600 */
         color: white; /* Ensure text is white */
     }
 
-    /* Initial state for about section animation (hidden and slightly below) */
-    #about {
-      opacity: 0;
-      transform: translateY(100px);
-      transition: none; /* Disable default transitions for initial state */
+    /* --- NEW CSS FOR FIXED BACKGROUND AND CONTENT SLIDE --- */
+
+    /* Fixed background image container */
+    #fixed-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2; /* Below everything */
+      background-image: url('My.jpg');
+      background-size: cover;
+      /* Adjust as needed: right side of the person */
+      background-position: 95% center;
+      /* Responsive adjustments for background-position */
+      @media (min-width: 640px) { /* sm */
+        background-position: 55% center;
+      }
+      @media (min-width: 768px) { /* md */
+        background-position: right center; /* Person on the right */
+      }
     }
 
-    /* Class to mark about section as animated */
-    #about.animated {
-        transition: transform 1s ease-out, opacity 1s ease-out; /* Smooth transition after initial state */
+    /* Overlay for the fixed background for readability */
+    #home-overlay {
+      position: fixed; /* Also fixed */
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4); /* Dark overlay */
+      z-index: -1; /* Above the image, below content */
+    }
+
+    /* Main content wrapper to handle slide-in effect */
+    #content-wrapper {
+      position: relative;
+      z-index: 10; /* Above background and overlay */
+      margin-left: 0; /* Default for mobile */
+      min-height: 100vh; /* Ensure it takes full height */
+      /* For desktop, shift content to the right of the sidebar */
+      @media (min-width: 768px) { /* md */
+        margin-left: 16rem; /* Width of the sidebar */
+      }
+    }
+
+    /* Style for individual sections when they are 'active' (visible) */
+    .content-section {
+      min-height: 100vh; /* Make sure each section takes full viewport height */
+      padding: 2rem; /* Add some padding */
+      /* Initial state: off-screen to the right by default, but hidden initially */
+      transform: translateX(100%);
+      opacity: 0;
+      position: absolute; /* Stack sections on top of each other */
+      top: 0;
+      left: 0;
+      width: 100%; /* Take full width of content-wrapper */
+      /* This ensures the section content doesn't cover the person part of the image */
+      background-color: white; /* White background for content */
+      box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Subtle shadow */
+      transition: transform 0.8s ease-out, opacity 0.8s ease-out; /* Animation */
+      display: none; /* Hidden by default, will be set to flex when active */
+      overflow-y: auto; /* Allow scrolling if content is too long within the section */
+
+      /* Responsive adjustments for section width to leave space for the person */
+      @media (min-width: 768px) { /* md */
+        width: calc(100% - 30%); /* Adjust to leave space for the person */
+        margin-left: 30%; /* Shift content to the left to reveal person */
+      }
+    }
+
+    /* Home section has special styling as it's the initial view */
+    #home.content-section { /* Apply to home section itself */
+      background-color: transparent; /* No background for home section */
+      box-shadow: none; /* No shadow */
+      display: flex; /* Flexbox for centering home content */
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white; /* Text color for home section */
+      margin-left: 0; /* Home section takes full width of content-wrapper */
+      width: 100%;
+    }
+
+    /* When a section is active/visible */
+    .content-section.active {
+      transform: translateX(0%); /* Slide into view */
+      opacity: 1; /* Fade in */
+      display: flex; /* Ensure it's visible and behaves like a flex container */
+      flex-direction: column; /* Stack content vertically */
+      /* Specific alignment for non-home sections */
+      justify-content: flex-start; /* Align content to top */
+      align-items: flex-start; /* Align text to left */
+      padding-top: 5rem; /* Add top padding for content */
+      padding-left: 4rem; /* More padding on left for content */
+    }
+
+    /* Specific adjustments for home section when active */
+    #home.content-section.active {
+        justify-content: center; /* Re-center home content vertically */
+        align-items: center; /* Re-center home content horizontally */
+        padding-left: 2rem; /* Default padding */
+        padding-top: 2rem; /* Default padding */
+    }
+
+    /* Adjust for mobile screens where no person area is needed */
+    @media (max-width: 767px) {
+      .content-section {
+        width: 100%; /* Take full width on mobile */
+        margin-left: 0; /* No margin-left on mobile */
+        padding-left: 2rem; /* Consistent padding */
+        padding-right: 2rem;
+        padding-top: 5rem; /* Ensure padding for all sections on mobile */
+      }
     }
   </style>
 </head>
 <body class="min-h-screen font-poppins bg-white">
   <div class="flex flex-col md:flex-row h-full">
+    <div id="fixed-background"></div>
+    <div id="home-overlay"></div>
+
     <div id="overlay" class="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm z-10 hidden transition-opacity duration-300"></div>
 
     <aside id="sidebar" class="fixed md:sticky top-0 left-0 md:h-screen w-64 bg-gray-900 text-white p-6 z-20 transform -translate-x-full md:translate-x-0 transition-transform duration-500 ease-in-out overflow-y-auto">
@@ -101,12 +204,9 @@
       <i class="fas fa-bars text-xl"></i>
     </button>
 
-    <main id="main-content" class="flex-1 transition-all duration-500 overflow-x-hidden relative">
-      <section id="home" class="min-h-screen relative text-white">
-        <div class="absolute inset-0 -z-10" id="home-overlay"></div>
-        <img src="My.jpg" alt="Background" class="absolute inset-0 w-full h-full object-cover object-[95%] sm:object-[55%] md:object-right -z-10" />
-        <div class="relative z-10 flex flex-col justify-start md:justify-center items-center md:items-start text-center md:text-left min-h-screen px-4 sm:px-8 md:px-16 pt-20 sm:pt-24">
-          <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight" id="heading">Chandrashekhar Saini</h1>
+    <div id="content-wrapper" class="relative">
+      <section id="home" class="content-section" data-section-id="home">
+        <div class="relative z-10 w-full h-full"> <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight" id="heading">Chandrashekhar Saini</h1>
           <div class="mt-4 flex items-center justify-center md:justify-start gap-2">
             <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl">I'm a</span>
             <div class="relative">
@@ -118,13 +218,12 @@
         </div>
       </section>
 
-      <section id="about" class="p-8 bg-white">
-        <div class="max-w-4xl mx-auto">
-          <h2 class="text-4xl font-bold mb-6 text-blue-600 border-b-2 border-blue-600 inline-block">About Me</h2>
+      <section id="about" class="content-section" data-section-id="about">
+        <div class="max-w-4xl w-full"> <h2 class="text-4xl font-bold mb-6 text-blue-600 border-b-2 border-blue-600 inline-block">About Me</h2>
           <p class="text-gray-700 text-lg mb-6 whitespace-pre-line text-left">
             Hello, I’m Chandrashekhar Saini, born in Phulera, Jaipur, Rajasthan. I have been involved in computer education since 2018 and have always enjoyed teaching and learning about technology. I completed my schooling at Government Senior Secondary School, Phulera, and pursued my BCA from Subodh College in Jaipur. During my studies, I learned various programming languages and software, which ignited my passion for web development and software design.
 
-            I am an enthusiastic and dedicated individual with a strong desire to learn and grow in the field of technology. I am proficient in **HTML, CSS, JavaScript, and PHP**. I also have experience with **SQL** for database management and am familiar with frameworks like **Tailwind CSS** for rapid UI development. My skills extend to **graphic design using Canva and Photoshop**, allowing me to create visually appealing content. I am always keen on exploring new technologies and improving my existing skill set. I believe in continuous learning and adapting to new challenges.
+            I am an enthusiastic and dedicated individual with a strong desire to learn and grow in the field of technology. I am proficient in **HTML, CSS, JavaScript, and PHP**. I also have experience with **SQL** for database management and is familiar with frameworks like **Tailwind CSS** for rapid UI development. My skills extend to **graphic design using Canva and Photoshop**, allowing me to create visually appealing content. I am always keen on exploring new technologies and improving my existing skill set. I believe in continuous learning and adapting to new challenges.
           </p>
           <h3 class="text-2xl font-semibold text-blue-600 mb-4">Basic Details</h3>
           <ul class="mb-8 text-gray-700 text-lg space-y-1">
@@ -139,26 +238,34 @@
         </div>
       </section>
 
-      <section id="resume" class="min-h-screen bg-gray-100 p-8">
-        <h2 class="text-4xl font-bold mb-6 text-blue-600 border-b-2 border-blue-600 inline-block">Resume</h2>
-        <p class="text-gray-700 text-lg">Experience & Education</p>
-        </section>
+      <section id="resume" class="content-section" data-section-id="resume">
+        <div class="max-w-4xl w-full">
+          <h2 class="text-4xl font-bold mb-6 text-blue-600 border-b-2 border-blue-600 inline-block">Resume</h2>
+          <p class="text-gray-700 text-lg">Experience & Education</p>
+          </div>
+      </section>
 
-      <section id="portfolio" class="min-h-screen bg-white p-8">
-        <h2 class="text-4xl font-bold mb-6 text-blue-600 border-b-2 border-blue-600 inline-block">Portfolio</h2>
-        <p class="text-gray-700 text-lg">Some of my works.</p>
-        </section>
+      <section id="portfolio" class="content-section" data-section-id="portfolio">
+        <div class="max-w-4xl w-full">
+          <h2 class="text-4xl font-bold mb-6 text-blue-600 border-b-2 border-blue-600 inline-block">Portfolio</h2>
+          <p class="text-gray-700 text-lg">Some of my works.</p>
+          </div>
+      </section>
 
-      <section id="services" class="min-h-screen bg-gray-100 p-8">
-        <h2 class="text-4xl font-bold mb-6 text-blue-600 border-b-2 border-blue-600 inline-block">Services</h2>
-        <p class="text-gray-700 text-lg">What I can offer.</p>
-        </section>
+      <section id="services" class="content-section" data-section-id="services">
+        <div class="max-w-4xl w-full">
+          <h2 class="text-4xl font-bold mb-6 text-blue-600 border-b-2 border-blue-600 inline-block">Services</h2>
+          <p class="text-gray-700 text-lg">What I can offer.</p>
+          </div>
+      </section>
 
-      <section id="contact" class="min-h-screen bg-white p-8">
-        <h2 class="text-4xl font-bold mb-6 text-blue-600 border-b-2 border-blue-600 inline-block">Contact</h2>
-        <p class="text-gray-700 text-lg">Let's connect.</p>
-        </section>
-    </main>
+      <section id="contact" class="content-section" data-section-id="contact">
+        <div class="max-w-4xl w-full">
+          <h2 class="text-4xl font-bold mb-6 text-blue-600 border-b-2 border-blue-600 inline-block">Contact</h2>
+          <p class="text-gray-700 text-lg">Let's connect.</p>
+          </div>
+      </section>
+    </div>
   </div>
 
   <script>
@@ -196,10 +303,49 @@
         setTimeout(typeWriter, currentSpeed);
     }
 
+    // Function to show a specific section
+    function showSection(sectionId) {
+        const sections = document.querySelectorAll('.content-section');
+        const activeNavLinks = document.querySelectorAll('.nav-link');
+
+        sections.forEach(section => {
+            if (section.id === sectionId) {
+                // Ensure section is visible for animation
+                section.style.display = 'flex'; // Set display to flex to make it visible
+                // Animate the target section
+                anime({
+                    targets: section,
+                    translateX: ['100%', '0%'], // Slide from right
+                    opacity: [0, 1], // Fade in
+                    duration: 800,
+                    easing: 'easeOutQuad',
+                    delay: 100 // Small delay
+                }).finished.then(() => {
+                    // Add active class after animation
+                    section.classList.add('active');
+                });
+            } else {
+                // Hide non-active sections and reset their position
+                section.classList.remove('active');
+                section.style.transform = 'translateX(100%)'; // Reset to off-screen
+                section.style.opacity = '0'; // Reset opacity
+                section.style.display = 'none'; // Hide immediately after reset
+            }
+        });
+
+        // Update active navigation link
+        activeNavLinks.forEach(link => {
+            link.classList.remove('active-link');
+            if (link.getAttribute('href') === `#${sectionId}`) {
+                link.classList.add('active-link');
+            }
+        });
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
         typeWriter(); // Start the typing animation
 
-        // Menu toggle functionality for mobile sidebar
+        // Initial setup for mobile sidebar
         const menuToggle = document.getElementById('menu-toggle');
         const sidebar = document.getElementById('sidebar');
         const overlay = document.getElementById('overlay');
@@ -217,113 +363,30 @@
             body.classList.remove('menu-open');
         });
 
-        // Close sidebar when a nav link is clicked (for mobile)
+        // Handle navigation clicks
         const navLinks = document.querySelectorAll('.nav-link');
         navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
-                if (window.innerWidth < 768) { // Only on mobile/tablet sizes
+                e.preventDefault(); // Prevent default anchor jump
+
+                if (window.innerWidth < 768) { // Close sidebar on mobile after click
                     sidebar.classList.add('-translate-x-full');
                     overlay.classList.add('hidden');
                     body.classList.remove('menu-open');
                 }
-
-                // Smooth scroll to section
-                e.preventDefault();
                 const targetId = link.getAttribute('href').substring(1);
-                const targetSection = document.getElementById(targetId);
-
-                // Remove active-link from all
-                navLinks.forEach(nav => nav.classList.remove('active-link'));
-                // Add active-link to the clicked one
-                link.classList.add('active-link');
-
-
-                if (targetSection) {
-                    // Use anime.js for smooth scroll
-                    anime({
-                        targets: 'html, body',
-                        scrollTop: targetSection.offsetTop,
-                        duration: 800,
-                        easing: 'easeInOutQuad',
-                        complete: () => {
-                            // Animate 'About' section if it's the target after scrolling
-                            if (targetId === 'about' && !targetSection.classList.contains('animated')) {
-                                animateAboutSection();
-                            }
-                        }
-                    });
-                }
+                showSection(targetId);
             });
         });
 
-        // Add active class to current nav link on scroll
-        const sections = document.querySelectorAll('section');
-        window.addEventListener('scroll', () => {
-            let currentSectionId = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                // Determine if the middle of the section is in view
-                if (pageYOffset >= sectionTop - window.innerHeight / 3 && pageYOffset < sectionTop + sectionHeight - window.innerHeight / 3) {
-                    currentSectionId = section.getAttribute('id');
-                }
-            });
+        // Initial section display based on hash or default to home
+        const initialHash = window.location.hash ? window.location.hash.substring(1) : 'home';
+        showSection(initialHash);
 
-            navLinks.forEach(link => {
-                link.classList.remove('active-link'); // Remove from all
-                if (link.getAttribute('href').includes(currentSectionId)) {
-                    link.classList.add('active-link'); // Add to current
-                }
-            });
-
-            // Trigger 'About' section animation on scroll if it comes into view
-            const aboutSection = document.getElementById('about');
-            // Get position relative to viewport
-            const aboutRect = aboutSection.getBoundingClientRect();
-
-            // Check if about section is mostly in view and hasn't been animated yet
-            if (aboutRect.top < window.innerHeight * 0.75 && aboutRect.bottom > window.innerHeight * 0.25 && !aboutSection.classList.contains('animated')) {
-                animateAboutSection();
-                aboutSection.classList.add('animated'); // Mark as animated
-            }
-        });
-
-        // Function to animate the About section
-        function animateAboutSection() {
-            anime({
-                targets: '#about',
-                translateY: [100, 0], // Starts 100px below and moves to its natural position
-                opacity: [0, 1], // Starts invisible and fades in
-                duration: 1000,
-                easing: 'easeOutQuad',
-                delay: 200, // Small delay to ensure scroll finishes first
-            });
-        }
-
-        // Initial check for active link on page load
-        const initialHash = window.location.hash.substring(1);
-        if (initialHash) {
-            const initialLink = document.querySelector(`a[href="#${initialHash}"]`);
-            if (initialLink) {
-                initialLink.classList.add('active-link');
-                // If 'about' is the initial hash, animate it
-                if (initialHash === 'about' && !document.getElementById('about').classList.contains('animated')) {
-                    animateAboutSection();
-                    document.getElementById('about').classList.add('animated');
-                }
-            }
-        } else {
-            // Default to 'Home' if no hash on load
-            document.querySelector('a[href="#home"]').classList.add('active-link');
-        }
-
-        // Trigger 'About' section animation if it's already in view on load
-        // This handles cases where the page loads directly to a position where #about is visible
-        const aboutSectionOnLoad = document.getElementById('about');
-        const aboutRectOnLoad = aboutSectionOnLoad.getBoundingClientRect();
-        if (aboutRectOnLoad.top < window.innerHeight * 0.75 && aboutRectOnLoad.bottom > window.innerHeight * 0.25 && !aboutSectionOnLoad.classList.contains('animated')) {
-            animateAboutSection();
-            aboutSectionOnLoad.classList.add('animated');
+        // Set initial active link on load
+        const initialNavLink = document.querySelector(`a[href="#${initialHash}"]`);
+        if (initialNavLink) {
+            initialNavLink.classList.add('active-link');
         }
     });
   </script>
