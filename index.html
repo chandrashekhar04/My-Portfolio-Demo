@@ -32,19 +32,14 @@
       overflow: hidden;
     }
     #underline {
-      height: 2px; /* reduced from default to make thinner */
+      height: 2px;
     }
   </style>
 </head>
 <body class="min-h-screen font-poppins bg-white">
-
   <div class="flex flex-col md:flex-row h-full">
-
-    <!-- Overlay -->
     <div id="overlay" class="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm z-10 hidden transition-opacity duration-300"></div>
-
-    <!-- Sidebar -->
-    <aside id="sidebar" class="fixed md:sticky top-0 left-0 md:top-0 md:h-screen w-64 bg-gray-900 text-white p-6 z-20 transform -translate-x-full md:translate-x-0 transition-transform duration-500 ease-in-out overflow-y-auto">
+    <aside id="sidebar" class="fixed md:sticky top-0 left-0 md:h-screen w-64 bg-gray-900 text-white p-6 z-20 transform -translate-x-full md:translate-x-0 transition-transform duration-500 ease-in-out overflow-y-auto">
       <div class="profile mb-8 text-center">
         <img src="Profile.jpg" alt="Profile Photo" class="mx-auto w-28 h-28 rounded-full object-cover border-2 border-white" />
         <h2 class="mt-4 text-xl font-semibold">Chandrashekhar Saini</h2>
@@ -71,12 +66,10 @@
       </footer>
     </aside>
 
-    <!-- Mobile Toggle -->
     <button id="menu-toggle" class="fixed top-5 left-5 z-30 md:hidden bg-gray-900 text-white p-3 rounded-md">
       <i class="fas fa-bars text-xl"></i>
     </button>
 
-    <!-- Main Content -->
     <main id="main-content" class="flex-1 transition-all duration-500 overflow-x-hidden">
       <section id="home" class="min-h-screen relative text-white">
         <div class="absolute inset-0 -z-10" id="home-overlay"></div>
@@ -94,40 +87,28 @@
         </div>
       </section>
 
+      <!-- About Section (corrected image styling, responsive layout) -->
       <section id="about" class="min-h-screen bg-white p-8 flex flex-col md:flex-row items-start gap-12">
-  <!-- Profile Image -->
-  <div class="order-2 md:order-1 flex-1 max-w-3xl">
-    <h2 class="text-4xl font-bold mb-6 text-blue-600 border-b-2 border-blue-600 inline-block">About Me</h2>
-    
-    <p class="text-gray-700 text-lg mb-6 whitespace-pre-line text-left">
-      Hello, I’m Chandrashekhar Saini, born in Phulera, Jaipur. I have a strong academic foundation with a Diploma in Computer Science & Engineering (2022) and a Bachelor of Arts (2023). Currently, I’m pursuing my Master’s in Computer Applications (MCA) to strengthen my technical and creative skills further. 
-
-      My professional journey as a Graphic Designer began in 2023, sparked by a growing interest in visual storytelling. I started with Canva, where I learned to design creatives and understand the basics of visual communication. Over time, I developed a deeper interest in video editing, which led me to explore Adobe Premiere Pro and, eventually, Adobe After Effects to enhance my motion graphics capabilities. Along the way, I’ve also picked up working knowledge of tools like Adobe Photoshop and Adobe Illustrator, which I use occasionally for design tasks such as high editing.
-
-      I enjoy working on corporate-style projects, where I can apply both my design and editing skills. I’m continuously learning and evolving, and my journey from beginner tools to more advanced software reflects my curiosity, adaptability, and commitment to growth. I aim to create graphics and videos that not only look good but also communicate, connect emotionally, and deliver results.
-    </p>
-
-    <!-- Basic Details -->
-    <h3 class="text-2xl font-semibold text-blue-600 mb-4">Basic Details</h3>
-    <ul class="mb-8 text-gray-700 text-lg space-y-1">
-      <li><i class="fas fa-birthday-cake mr-2 text-blue-600"></i><strong>Birthday:</strong> 03 Oct 2001</li>
-      <li><i class="fas fa-envelope mr-2 text-blue-600"></i><strong>Email:</strong> <a href="mailto:sainichandrashekhar34@gmail.com" class="text-blue-600 hover:underline">sainichandrashekhar34@gmail.com</a></li>
-      <li><i class="fas fa-phone-alt mr-2 text-blue-600"></i><strong>Phone:</strong> <a href="tel:+919116878369" class="text-blue-600 hover:underline">+91 9116878369</a></li>
-      <li><i class="fas fa-map-marker-alt mr-2 text-blue-600"></i><strong>City:</strong> Phulera, Jaipur</li>
-    </ul>
-
-    <p class="text-gray-700 text-lg text-left">
-      So far, every task I’ve been assigned has been completed with full dedication and responsibility. I’ve also earned achievements along the way, which motivate me to keep improving. I always try to learn something new and explore beyond my core field. My goal is to become more skilled, versatile, and valuable in every project I work on. I believe that consistent effort, curiosity, and passion are the keys to growth.
-    </p>
-  </div>
-
-  <!-- Rectangle Style Profile Image -->
-  <div class="order-1 md:order-2 flex-shrink-0">
-    <img src="Profile.jpg" alt="Chandrashekhar Saini" class="w-64 h-auto max-h-[400px] object-cover rounded-xl border-4 border-blue-500 shadow-xl" />
-  </div>
-</section>
-
-
+        <div class="order-2 md:order-1 flex-1 max-w-3xl">
+          <h2 class="text-4xl font-bold mb-6 text-blue-600 border-b-2 border-blue-600 inline-block">About Me</h2>
+          <p class="text-gray-700 text-lg mb-6 whitespace-pre-line text-left">
+            Hello, I’m Chandrashekhar Saini, born in Phulera, Jaipur. I have a strong academic foundation...
+          </p>
+          <h3 class="text-2xl font-semibold text-blue-600 mb-4">Basic Details</h3>
+          <ul class="mb-8 text-gray-700 text-lg space-y-1">
+            <li><i class="fas fa-birthday-cake mr-2 text-blue-600"></i><strong>Birthday:</strong> 03 Oct 2001</li>
+            <li><i class="fas fa-envelope mr-2 text-blue-600"></i><strong>Email:</strong> <a href="mailto:sainichandrashekhar34@gmail.com" class="text-blue-600 hover:underline">sainichandrashekhar34@gmail.com</a></li>
+            <li><i class="fas fa-phone-alt mr-2 text-blue-600"></i><strong>Phone:</strong> <a href="tel:+919116878369" class="text-blue-600 hover:underline">+91 9116878369</a></li>
+            <li><i class="fas fa-map-marker-alt mr-2 text-blue-600"></i><strong>City:</strong> Phulera, Jaipur</li>
+          </ul>
+          <p class="text-gray-700 text-lg text-left">
+            So far, every task I’ve been assigned has been completed with full dedication...
+          </p>
+        </div>
+        <div class="order-1 md:order-2 flex-shrink-0">
+          <img src="Profile.jpg" alt="Chandrashekhar Saini" class="w-64 h-auto max-h-[400px] object-cover rounded-xl shadow-xl" />
+        </div>
+      </section>
 
       <section id="resume" class="min-h-screen bg-white p-8">
         <h2 class="text-3xl font-semibold mb-4">Resume</h2>
