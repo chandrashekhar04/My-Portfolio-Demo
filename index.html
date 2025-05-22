@@ -142,126 +142,29 @@ So far, every task I’ve been assigned has been completed with full dedication 
   </div>
 
   <script>
-    const menuToggle = document.getElementById('menu-toggle');
-    const sidebar = document.getElementById('sidebar');
-    const overlay = document.getElementById('overlay');
-    const homeOverlay = document.getElementById('home-overlay');
-
-    function openMenu() {
-      sidebar.classList.remove('-translate-x-full');
-      overlay.classList.remove('hidden');
-      document.body.classList.add('menu-open');
-    }
-
-    function closeMenu() {
-      sidebar.classList.add('-translate-x-full');
-      overlay.classList.add('hidden');
-      document.body.classList.remove('menu-open');
-    }
-
-    menuToggle.addEventListener('click', () => {
-      if (sidebar.classList.contains('-translate-x-full')) {
-        openMenu();
-      } else {
-        closeMenu();
-      }
-    });
-
-    overlay.addEventListener('click', closeMenu);
-    homeOverlay.addEventListener('click', () => {
-      if (window.innerWidth < 768) closeMenu();
-    });
-
-    const navLinks = document.querySelectorAll('nav ul li a');
-    navLinks.forEach((link) => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const targetId = link.getAttribute('href').substring(1);
-        const targetSection = document.getElementById(targetId);
-        if (targetSection) {
-          targetSection.scrollIntoView({ behavior: 'smooth' });
-          if (window.innerWidth < 768) {
-            closeMenu();
-          }
-        }
-      });
-    });
-
-    const words = ['Graphic Designer', 'Video Editor', 'Digital Creator', 'Visual Artist'];
-    const typingText = document.getElementById('typing-text');
-    let wordIndex = 0, charIndex = 0, isDeleting = false;
-    function type() {
-      const currentWord = words[wordIndex];
-      typingText.textContent = currentWord.substring(0, charIndex + 1);
-      if (!isDeleting && charIndex++ === currentWord.length) {
-        isDeleting = true;
-        setTimeout(type, 2000);
-        return;
-      }
-      if (isDeleting && charIndex-- === 0) {
-        isDeleting = false;
-        wordIndex = (wordIndex + 1) % words.length;
-      }
-      setTimeout(type, isDeleting ? 80 : 150);
-    }
-    document.addEventListener('DOMContentLoaded', () => {
-      type();
-      anime({ targets: '#heading', translateY: [40, 0], opacity: [0, 1], duration: 1000, easing: 'easeOutExpo' });
-      anime({ targets: '#typing-text', delay: 200, opacity: [0, 1], translateY: [20, 0], duration: 800, easing: 'easeOutExpo' });
-    });
-
-    const sections = document.querySelectorAll('main section');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const id = entry.target.getAttribute('id');
-          navLinks.forEach((link) => {
-            link.classList.remove('active', 'bg-blue-600');
-            if (link.getAttribute('href').substring(1) === id) {
-              link.classList.add('active', 'bg-blue-600');
-            }
-          });
-          anime({
-            targets: `#${id} h2`,
-            opacity: [0, 1],
-            translateY: [40, 0],
-            duration: 800,
-            easing: 'easeOutQuad'
-          });
-        }
-      });
-    }, { threshold: 0.6 });
-    sections.forEach((section) => observer.observe(section));
-
-    window.addEventListener('load', function () {
-      setTimeout(function () {
-        if (performance.navigation.type === 1 || performance.getEntriesByType("navigation")[0].type === "reload") {
-          window.scrollTo(0, 0);
-        }
-      }, 100);
-    });
-
-    <script>
+  // Select nav links, home and about sections
   const navLinks = document.querySelectorAll('nav ul li a');
   const aboutSection = document.getElementById('about');
   const homeSection = document.getElementById('home');
 
-  // Show About section with animation
+  // Show About with animation
   function showAbout() {
     aboutSection.classList.add('visible');
     aboutSection.scrollIntoView({ behavior: 'smooth' });
   }
 
-  // Hide About animation when scrolling to Home
+  // Hide About (when going back to Home)
   function hideAbout() {
     aboutSection.classList.remove('visible');
     homeSection.scrollIntoView({ behavior: 'smooth' });
   }
 
+  // Handle nav link clicks
   navLinks.forEach(link => {
     link.addEventListener('click', e => {
       const targetId = link.getAttribute('href').substring(1);
       e.preventDefault();
+
       if (targetId === 'about') {
         showAbout();
       } else if (targetId === 'home') {
@@ -271,11 +174,14 @@ So far, every task I’ve been assigned has been completed with full dedication 
         if (target) target.scrollIntoView({ behavior: 'smooth' });
       }
 
-      if (window.innerWidth < 768) closeMenu?.(); // optional if mobile menu exists
+      // Close mobile menu if needed
+      if (window.innerWidth < 768 && typeof closeMenu === 'function') {
+        closeMenu();
+      }
     });
   });
 
-  // Optionally trigger animation on scroll into view
+  // Automatically trigger animation if About comes into view by scroll
   window.addEventListener('scroll', () => {
     const rect = aboutSection.getBoundingClientRect();
     if (rect.top < window.innerHeight && rect.bottom > 0) {
@@ -284,6 +190,5 @@ So far, every task I’ve been assigned has been completed with full dedication 
   });
 </script>
 
-  </script>
 </body>
 </html>
