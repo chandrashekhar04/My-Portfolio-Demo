@@ -289,33 +289,33 @@
     const navLinks = document.querySelectorAll('.nav-link');
     const sections = document.querySelectorAll('.content-section');
 
-    function showSection(targetId) {
-      sections.forEach(section => {
-        if (section.id === targetId) {
-          section.classList.add('active');
-          section.style.display = 'flex';
-          anime({
-            targets: section,
-            translateX: ['100%', '0%'],
-            opacity: [0, 1],
-            easing: 'easeOutQuad',
-            duration: 500,
-          });
-        } else {
-          anime({
-            targets: section,
-            translateX: ['0%', '100%'],
-            opacity: [1, 0],
-            easing: 'easeInQuad',
-            duration: 400,
-            complete: () => {
-              section.classList.remove('active');
-              section.style.display = 'none';
-            }
-          });
+   function showSection(targetId) {
+  sections.forEach(section => {
+    if (section.id === targetId) {
+      section.classList.add('active');
+      section.style.display = 'flex';
+      anime({
+        targets: section,
+        translateY: ['100%', '0%'],
+        opacity: [0, 1],
+        easing: 'easeOutQuad',
+        duration: 500,
+      });
+    } else {
+      anime({
+        targets: section,
+        translateY: ['0%', '100%'],
+        opacity: [1, 0],
+        easing: 'easeInQuad',
+        duration: 400,
+        complete: () => {
+          section.classList.remove('active');
+          section.style.display = 'none';
         }
       });
     }
+  });
+}
 
     navLinks.forEach(link => {
       link.addEventListener('click', e => {
