@@ -204,9 +204,9 @@
                 <i class="fas fa-bars text-xl"></i> </button>
 
             <section id="hero" class="relative min-h-screen flex flex-col justify-start items-start overflow-hidden hero-overlay pt-16 pb-20 px-6 md:pt-32 md:px-16 lg:px-24"> <div class="relative z-10 w-full max-w-4xl">
-                    <h1 class="text-4xl md:text-7xl font-extrabold text-white leading-tight mb-2 md:mb-4"> <span class="text-white">Shree Ramchandra</span>
+                    <h1 class="text-3xl md:text-7xl font-extrabold text-white leading-tight mb-2 md:mb-4"> <span class="text-white">Shree Ramchandra</span>
                     </h1>
-                    <p class="text-lg md:text-2xl text-gray-200 mb-6"> I'm a <span id="typing-text" class="text-amber-300 underline-effect typing-container"></span>
+                    <p class="text-base md:text-2xl text-gray-200 mb-6"> I'm a <span id="typing-text" class="text-amber-300 underline-effect typing-container"></span>
                     </p>
                     <a href="#portfolio" class="inline-block bg-teal-500 hover:bg-teal-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transform hover:scale-105 transition duration-300">
                         View My Work
@@ -405,20 +405,12 @@
         // Mobile Menu Toggle
         const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
         const sidebar = document.getElementById('sidebar');
-        // const mobileMenuOverlay = document.getElementById('mobile-menu-overlay'); // Removed per user request
 
-        if (mobileMenuToggle && sidebar) { // Removed mobileMenuOverlay from condition
+        if (mobileMenuToggle && sidebar) {
             mobileMenuToggle.addEventListener('click', () => {
                 sidebar.classList.toggle('-translate-x-full');
                 sidebar.classList.toggle('translate-x-0');
-                // mobileMenuOverlay.classList.toggle('hidden'); // Removed per user request
             });
-
-            // mobileMenuOverlay.addEventListener('click', () => { // Removed per user request
-            //     sidebar.classList.add('-translate-x-full');
-            //     sidebar.classList.remove('translate-x-0');
-            //     mobileMenuOverlay.classList.add('hidden');
-            // });
 
             // Close sidebar when a navigation link is clicked
             document.querySelectorAll('aside .nav-link').forEach(link => {
@@ -426,24 +418,21 @@
                     if (window.innerWidth < 768) { // Only close on mobile
                         sidebar.classList.add('-translate-x-full');
                         sidebar.classList.remove('translate-x-0');
-                        // mobileMenuOverlay.classList.add('hidden'); // Removed per user request
                     }
                 });
             });
         }
 
-        // Adjust sidebar and overlay visibility on window resize (for desktop/mobile transition)
+        // Adjust sidebar visibility on window resize (for desktop/mobile transition)
         window.addEventListener('resize', () => {
             if (window.innerWidth >= 768) {
                 sidebar.classList.remove('-translate-x-full');
                 sidebar.classList.add('translate-x-0');
-                // mobileMenuOverlay.classList.add('hidden'); // Removed per user request
             } else {
                 // Ensure sidebar is closed on small screens if resized from large
                 if (sidebar.classList.contains('translate-x-0')) { // If it was open on desktop
                     sidebar.classList.remove('translate-x-0');
                     sidebar.classList.add('-translate-x-full');
-                    // mobileMenuOverlay.classList.add('hidden'); // Removed per user request
                 }
             }
         });
@@ -480,18 +469,10 @@
             setTimeout(typeRoles, typingSpeed);
         }
 
-        // Start typing effect on page load (ensure it only runs on large screens or handle mobile differently)
-        if (window.innerWidth >= 768) {
-            window.addEventListener('load', () => {
-                typeRoles();
-            });
-        } else {
-            // For mobile, display first role immediately
-            if (typingTextElement) {
-                typingTextElement.textContent = roles[0];
-                typingTextElement.classList.remove('typing-container'); // Remove cursor animation on mobile if not typing
-            }
-        }
+        // Start typing effect on page load for all screen sizes
+        window.addEventListener('load', () => {
+            typeRoles();
+        });
     </script>
 </body>
 </html>
