@@ -14,7 +14,6 @@
     #underline {
       height: 2px;
     }
-    /* Scrollbar for sidebar */
     aside::-webkit-scrollbar {
       width: 6px;
     }
@@ -22,7 +21,6 @@
       background: #4ade80;
       border-radius: 3px;
     }
-
     .cursor {
       display: inline-block;
       background-color: #3b82f6;
@@ -36,20 +34,15 @@
       0%, 50% { opacity: 1; }
       50.01%, 100% { opacity: 0; }
     }
-
-    /* Home background fixed */
     #home-bg {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
       z-index: -10;
       background: url('My.jpg') no-repeat center right;
       background-size: cover;
-      /* Adjust background position for person visible on right */
       background-position-x: 90%;
       transition: background-position 0.5s ease;
     }
-
-    /* Home text container */
     #home-text {
       min-height: 100vh;
       display: flex;
@@ -67,16 +60,13 @@
       opacity: 0;
       pointer-events: none;
     }
-
-    /* Main container flex for sidebar + content */
     .container {
       display: flex;
       min-height: 100vh;
     }
-
     aside {
-      width: 16rem; /* 256px */
-      background: #111827; /* Tailwind gray-900 */
+      width: 16rem;
+      background: #111827;
       color: white;
       padding: 1.5rem;
       position: sticky;
@@ -85,12 +75,10 @@
       overflow-y: auto;
       z-index: 20;
     }
-
     main {
       flex: 1;
-      padding: 2rem;
+      padding: 0;
       transition: width 0.5s ease;
-      /* Default full width */
       width: 100%;
       max-width: 100%;
       background: white;
@@ -98,8 +86,6 @@
       position: relative;
       z-index: 5;
     }
-
-    /* About section width when active */
     main.about-active {
       width: 80%;
       max-width: 80%;
@@ -109,8 +95,6 @@
       min-height: 100vh;
       overflow-y: auto;
     }
-
-    /* Sections styling */
     section {
       min-height: 100vh;
       padding-top: 4rem;
@@ -119,8 +103,6 @@
       font-size: 2rem;
       margin-bottom: 1rem;
     }
-
-    /* Mobile: Show menu button */
     #menu-toggle {
       display: none;
       position: fixed;
@@ -172,12 +154,12 @@
       </div>
       <nav>
         <ul class="space-y-4 text-lg">
-          <li><a href="#home" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200 active:bg-blue-600"><i class="fas fa-home"></i><span>Home</span></a></li>
-          <li><a href="#about" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200"><i class="fas fa-user"></i><span>About</span></a></li>
-          <li><a href="#resume" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200"><i class="fas fa-file"></i><span>Resume</span></a></li>
-          <li><a href="#portfolio" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200"><i class="fas fa-briefcase"></i><span>Portfolio</span></a></li>
-          <li><a href="#services" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200"><i class="fas fa-concierge-bell"></i><span>Services</span></a></li>
-          <li><a href="#contact" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200"><i class="fas fa-envelope"></i><span>Contact</span></a></li>
+          <li><a href="#home" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 active:bg-blue-600"><i class="fas fa-home"></i><span>Home</span></a></li>
+          <li><a href="#about" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700"><i class="fas fa-user"></i><span>About</span></a></li>
+          <li><a href="#resume" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700"><i class="fas fa-file"></i><span>Resume</span></a></li>
+          <li><a href="#portfolio" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700"><i class="fas fa-briefcase"></i><span>Portfolio</span></a></li>
+          <li><a href="#services" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700"><i class="fas fa-concierge-bell"></i><span>Services</span></a></li>
+          <li><a href="#contact" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700"><i class="fas fa-envelope"></i><span>Contact</span></a></li>
         </ul>
       </nav>
       <footer class="mt-auto text-center text-sm text-gray-400 py-6">
@@ -187,7 +169,6 @@
 
     <!-- Main Content -->
     <main id="main-content">
-      <!-- Home -->
       <div id="home-bg"></div>
       <section id="home" class="relative z-10">
         <div id="home-text">
@@ -200,13 +181,17 @@
         </div>
       </section>
 
-      <!-- About -->
-      <section id="about" class="pt-20">
-        <h2>About Me</h2>
-        <p>I'm a passionate Graphic Designer and Video Editor.</p>
+      <!-- Updated About Section -->
+      <section id="about" class="min-h-screen bg-gradient-to-r from-[#780000] to-[#003049] text-white flex items-center px-10 lg:px-20">
+        <div class="max-w-4xl">
+          <h2 class="text-4xl font-bold mb-4">About Me</h2>
+          <p class="text-lg leading-relaxed">
+            I'm a passionate Graphic Designer and Video Editor. I love creating visually compelling designs and videos that leave an impact.
+            My creative journey has been filled with exploration, dedication, and constant learning.
+          </p>
+        </div>
       </section>
 
-      <!-- Other sections -->
       <section id="resume" class="pt-20">
         <h2>Resume</h2>
         <p>Experience & Education</p>
@@ -234,7 +219,6 @@
   </button>
 
   <script>
-    // Typing effect for tagline
     const words = ['Graphic Designer', 'Video Editor', 'Digital Creator', 'Visual Artist'];
     const typingText = document.getElementById('typing-text');
     let wordIndex = 0, charIndex = 0, isDeleting = false;
@@ -262,7 +246,6 @@
 
     document.addEventListener('DOMContentLoaded', () => {
       type();
-      // Animate home text on page load
       anime({
         targets: '#home-text',
         translateY: [40, 0],
@@ -272,7 +255,6 @@
       });
     });
 
-    // Sidebar menu toggle for mobile
     const menuToggle = document.getElementById('menu-toggle');
     const sidebar = document.querySelector('aside');
 
@@ -281,7 +263,6 @@
       document.body.classList.toggle('menu-open');
     });
 
-    // Navigation links scroll and active state
     const navLinks = document.querySelectorAll('nav ul li a');
     const mainContent = document.getElementById('main-content');
     const homeText = document.getElementById('home-text');
@@ -310,21 +291,14 @@
       });
     });
 
-    // Scroll event for showing/hiding home text and about width
     window.addEventListener('scroll', () => {
       const scrollY = window.scrollY;
-
-      // When About section near top of viewport
       const aboutTop = aboutSection.offsetTop;
       if (scrollY + window.innerHeight / 3 >= aboutTop) {
-        // Hide home text
         homeText.classList.add('hidden');
-        // Shrink main width for about section, show home image on right
         main.classList.add('about-active');
       } else {
-        // Show home text
         homeText.classList.remove('hidden');
-        // Reset main width
         main.classList.remove('about-active');
       }
     });
