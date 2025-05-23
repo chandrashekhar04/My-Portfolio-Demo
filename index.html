@@ -302,7 +302,6 @@ function showSection(targetId) {
       } else {
         anime({
           targets: section,
-          translateX: ['-50%', '0%'],  // left to center
           translateY: ['50%', '0%'],   // bottom to center
           opacity: [0, 1],
           easing: 'easeOutQuad',
@@ -317,7 +316,6 @@ function showSection(targetId) {
       } else {
         anime({
           targets: section,
-          translateX: ['0%', '-50%'],  // center to left
           translateY: ['0%', '50%'],   // center to bottom
           opacity: [1, 0],
           easing: 'easeInQuad',
