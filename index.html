@@ -8,6 +8,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
   <style>
+    aside::-webkit-scrollbar {
+      width: 6px;
+    }
+    aside::-webkit-scrollbar-thumb {
+      background: #4ade80;
+      border-radius: 3px;
+    }
     .cursor {
       display: inline-block;
       background-color: #3b82f6;
@@ -27,12 +34,34 @@
     #underline {
       height: 2px;
     }
+    .about-wrapper {
+      position: relative;
+      z-index: 1;
+    }
+    #about {
+      position: absolute;
+      top: 100vh;
+      left: 0;
+      width: 80vw;
+      min-height: 100vh;
+      background: white;
+      padding: 2rem;
+      z-index: 10;
+      transition: transform 0.6s ease-out;
+    }
+    .about-visible #about {
+      transform: translateY(-100vh);
+    }
+    #main-content {
+      overflow-y: auto;
+      scroll-behavior: smooth;
+    }
   </style>
 </head>
 <body class="min-h-screen font-poppins bg-white">
-  <div class="flex flex-col md:flex-row">
+  <div class="flex flex-col md:flex-row h-full">
     <!-- Sidebar -->
-    <aside class="fixed md:sticky top-0 left-0 md:h-screen w-64 bg-gray-900 text-white p-6 z-20 overflow-y-auto">
+    <aside id="sidebar" class="fixed md:sticky top-0 left-0 md:top-0 md:h-screen w-64 bg-gray-900 text-white p-6 z-20 overflow-y-auto">
       <div class="profile mb-8 text-center">
         <img src="Profile.jpg" alt="Profile Photo" class="mx-auto w-28 h-28 rounded-full object-cover border-2 border-white" />
         <h2 class="mt-4 text-xl font-semibold">Chandrashekhar Saini</h2>
@@ -46,20 +75,23 @@
       </div>
       <nav>
         <ul class="space-y-4 text-lg">
-          <li><a href="#home" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700"><i class="fas fa-home"></i><span>Home</span></a></li>
-          <li><a href="#about" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700"><i class="fas fa-user"></i><span>About</span></a></li>
+          <li><a href="#home" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200 active:bg-blue-600"><i class="fas fa-home"></i><span>Home</span></a></li>
+          <li><a href="#about" class="nav-link flex items-center space-x-3 p-2 rounded hover:bg-gray-700 transition-colors duration-200"><i class="fas fa-user"></i><span>About</span></a></li>
         </ul>
       </nav>
+      <footer class="mt-auto text-center text-sm text-gray-400 py-6">
+        &copy; Copyright <strong>Chandrashekhar</strong>
+      </footer>
     </aside>
 
     <!-- Main Content -->
-    <main class="flex-1">
+    <main id="main-content" class="relative flex-1 h-screen overflow-y-scroll">
       <!-- Home Section -->
-      <section id="home" class="relative min-h-screen">
+      <section id="home" class="min-h-screen relative text-white">
         <img src="My.jpg" alt="Background" class="absolute inset-0 w-full h-full object-cover object-right -z-10" />
-        <div class="relative z-10 flex flex-col justify-center items-start min-h-screen px-8">
-          <h1 class="text-5xl font-bold text-white" id="heading">Chandrashekhar Saini</h1>
-          <div class="mt-4 flex items-center gap-2 text-white">
+        <div class="relative z-10 flex flex-col justify-center items-start text-left min-h-screen px-16">
+          <h1 class="text-5xl font-bold leading-tight" id="heading">Chandrashekhar Saini</h1>
+          <div class="mt-4 flex items-center gap-2">
             <span class="text-2xl">I'm a</span>
             <div class="relative">
               <span id="typing-text" class="text-2xl font-semibold inline-block"></span>
@@ -70,15 +102,36 @@
         </div>
       </section>
 
-      <!-- About Section -->
-      <section id="about" class="relative z-10 min-h-screen px-8 py-12 md:w-[80%] bg-white ml-0">
-        <h2 class="text-3xl font-semibold mb-4">About Me</h2>
-        <p class="text-lg">I'm a passionate Graphic Designer and Video Editor.</p>
-      </section>
+      <!-- About Section Overlayed -->
+      <div class="about-wrapper">
+        <section id="about">
+          <h2 class="text-3xl font-semibold mb-4">About Me</h2>
+          <p>I'm a passionate Graphic Designer and Video Editor.</p>
+        </section>
+      </div>
     </main>
   </div>
 
   <script>
+    const navLinks = document.querySelectorAll('nav ul li a');
+    const aboutSection = document.getElementById('about');
+    const mainContent = document.getElementById('main-content');
+
+    function showAbout() {
+      document.body.classList.add('about-visible');
+    }
+
+    navLinks.forEach((link) => {
+      link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+        if (href === '#about') {
+          e.preventDefault();
+          showAbout();
+          document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
     const words = ['Graphic Designer', 'Video Editor', 'Digital Creator', 'Visual Artist'];
     const typingText = document.getElementById('typing-text');
     let wordIndex = 0, charIndex = 0, isDeleting = false;
@@ -96,24 +149,17 @@
       }
       setTimeout(type, isDeleting ? 80 : 150);
     }
-
     document.addEventListener('DOMContentLoaded', () => {
       type();
-      anime({
-        targets: '#heading',
-        translateY: [40, 0],
-        opacity: [0, 1],
-        duration: 1000,
-        easing: 'easeOutExpo'
-      });
-      anime({
-        targets: '#typing-text',
-        delay: 200,
-        opacity: [0, 1],
-        translateY: [20, 0],
-        duration: 800,
-        easing: 'easeOutExpo'
-      });
+      anime({ targets: '#heading', translateY: [40, 0], opacity: [0, 1], duration: 1000, easing: 'easeOutExpo' });
+      anime({ targets: '#typing-text', delay: 200, opacity: [0, 1], translateY: [20, 0], duration: 800, easing: 'easeOutExpo' });
+    });
+
+    // Scroll to top on reload
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        window.scrollTo(0, 0);
+      }, 100);
     });
   </script>
 </body>
